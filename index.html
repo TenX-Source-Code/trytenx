@@ -67,6 +67,7 @@
          value is now the mint-green primary. */
       --accent-cyan:   #00E676;
       --accent-green:  #00E676;
+      --accent-blue:   #7C86FF;  /* periwinkle — secondary / chrome / informational */
       --accent-pass:   #22C55E;  /* signal-pass differentiated from primary */
       --accent-amber:  #EAB308;
       --accent-red:    #EF4444;
@@ -83,7 +84,7 @@
       /* glass surface (new) */
       --glass-bg: rgba(19, 22, 29, 0.55);
       --glass-border: rgba(255, 255, 255, 0.06);
-      --glass-border-bright: rgba(0, 230, 118, 0.18);
+      --glass-border-bright: rgba(124, 134, 255, 0.18);
     }
 
     /* Glass utility — used by hero card, problem table, and future cards */
@@ -111,17 +112,17 @@
       font-size: 11px; font-weight: 500;
       letter-spacing: 0.02em;
       color: var(--text-primary);
-      background: rgba(0,230,118,0.10);
-      border: 1px solid rgba(0,230,118,0.35);
+      background: rgba(124,134,255,0.10);
+      border: 1px solid rgba(124,134,255,0.35);
       padding: 4px 10px;
       border-radius: var(--r-full);
       cursor: pointer;
       transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
     }
     .win-next:hover {
-      background: rgba(0,230,118,0.18);
-      border-color: rgba(0,230,118,0.55);
-      color: var(--accent-cyan);
+      background: rgba(124,134,255,0.18);
+      border-color: rgba(124,134,255,0.55);
+      color: var(--accent-blue);
       transform: translateX(1px);
     }
     .win-next svg { width: 10px; height: 10px; }
@@ -154,16 +155,16 @@
       background: rgba(0, 230, 118, 0.32);
       color: var(--bg-base);
     }
-    input, textarea { caret-color: var(--accent-cyan); }
+    input, textarea { caret-color: var(--accent-blue); }
     :focus-visible {
-      outline: 1px solid var(--accent-cyan);
+      outline: 1px solid var(--accent-blue);
       outline-offset: 2px;
     }
     * { scrollbar-width: thin; scrollbar-color: var(--border-bright) var(--bg-base); }
     ::-webkit-scrollbar { width: 8px; height: 8px; }
     ::-webkit-scrollbar-track { background: var(--bg-base); }
     ::-webkit-scrollbar-thumb { background: var(--border-bright); }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-blue); }
 
     /* ─────────────────────────────────────────────────────────
        AMBIENCE LAYER
@@ -181,22 +182,12 @@
       opacity: 0.04;
     }
     .grid-surface { position: relative; }
-    .grid-surface::before {
-      content: "";
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(to right, rgba(45,53,80,0.22) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(45,53,80,0.22) 1px, transparent 1px);
-      background-size: 80px 80px;
-      pointer-events: none;
-      z-index: 0;
-    }
     .grid-surface > * { position: relative; z-index: 1; }
 
     .scanline {
       position: absolute; left: 0; right: 0; top: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
       opacity: 0;
       pointer-events: none;
       z-index: 2;
@@ -272,17 +263,17 @@
       }
       .nav-wordmark {
         font-family: 'Space Grotesk', system-ui, sans-serif;
-        font-weight: 700; font-size: 18px;
+        font-weight: 700; font-size: 24px;
         letter-spacing: -0.03em;
         color: #F0F4FF;
-        display: flex; align-items: center;
+        display: flex; align-items: baseline;
       }
-      .nav-wordmark .dot {
-        width: 5px; height: 5px;
-        background: #00E676;
-        border-radius: 50%;
-        margin-left: 3px;
-        margin-bottom: 8px;
+      .nav-wordmark .x {
+        color: #00E676;
+        font-size: 1em;
+        position: relative;
+        top: -0.35em;
+        letter-spacing: 0;
       }
       .nav-link {
         font-family: 'IBM Plex Mono', ui-monospace, monospace;
@@ -296,7 +287,7 @@
       .nav-link:hover { color: #F0F4FF; }
       .nav-cta {
         font-family: 'IBM Plex Mono', ui-monospace, monospace;
-        font-weight: 500;
+        font-weight: 600;
         font-size: 11px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
@@ -311,12 +302,12 @@
     <div id="nav-shell" class="w-full">
       <div class="max-w-content mx-auto px-6 md:px-10 h-[56px] flex items-center justify-between">
         <a href="#" class="nav-wordmark" aria-label="TenX home">
-          TenX<span class="dot" aria-hidden="true"></span>
+          Ten<span class="x">x</span>
         </a>
         <div class="flex items-center gap-8">
           <div class="hidden md:flex items-center gap-8">
             <a href="#how-it-works" class="nav-link">How It Works</a>
-            <a href="#positioning" class="nav-link">Recruiters</a>
+            <a href="#how-it-works" class="nav-link">Recruiters</a>
             <a href="#pricing" class="nav-link">Pricing</a>
           </div>
           <a href="#cta-footer" class="nav-cta">Request Access</a>
@@ -422,9 +413,9 @@
           transition: border-color 160ms ease, color 160ms ease, background-color 160ms ease;
         }
         #hero-inner .btn-ghost:hover {
-          border-color: rgba(0,230,118,0.45);
-          color: #00E676;
-          background: rgba(0,230,118,0.06);
+          border-color: rgba(124,134,255,0.45);
+          color: #7C86FF;
+          background: rgba(124,134,255,0.06);
         }
 
         #hero-score-card {
@@ -675,11 +666,27 @@
         }
         #hero-glow {
           position: absolute; pointer-events: none; z-index: 0;
-          top: -10%; left: 50%; transform: translateX(-50%);
+          top: -10%; left: 65%; transform: translateX(-50%);
           width: 70vw; height: 70vw; max-width: 1100px; max-height: 1100px;
           background: radial-gradient(closest-side, rgba(0,230,118,0.18), rgba(0,230,118,0) 70%);
           filter: blur(40px);
           opacity: 0.9;
+        }
+        #hero-glow-blue {
+          position: absolute; pointer-events: none; z-index: 0;
+          top: 10%; left: 30%; transform: translateX(-50%);
+          width: 55vw; height: 55vw; max-width: 900px; max-height: 900px;
+          background: radial-gradient(closest-side, rgba(0,160,255,0.14), rgba(0,160,255,0) 70%);
+          filter: blur(50px);
+          opacity: 0.85;
+        }
+        #hero-glow-periwinkle {
+          position: absolute; pointer-events: none; z-index: 0;
+          top: 5%; left: 45%; transform: translateX(-50%);
+          width: 45vw; height: 45vw; max-width: 700px; max-height: 700px;
+          background: radial-gradient(closest-side, rgba(124,134,255,0.22), rgba(124,134,255,0) 70%);
+          filter: blur(60px);
+          opacity: 0.65;
         }
         #hero-inner .hero-h1 { max-width: 800px; }
         #hero-inner .hero-sub { max-width: 600px; }
@@ -704,6 +711,8 @@
 
       <div class="scanline" id="hero-scanline" aria-hidden="true"></div>
       <div id="hero-glow" aria-hidden="true"></div>
+      <div id="hero-glow-periwinkle" aria-hidden="true"></div>
+      <div id="hero-glow-blue" aria-hidden="true"></div>
 
       <div id="hero-inner" class="max-w-content mx-auto px-6 md:px-10">
             <div class="hero-eyebrow h-rise d-0 mb-6">AI-Native Hiring Assessment</div>
@@ -712,9 +721,8 @@
               <span class="block h-rise d-300">know how to <span class="accent">work with AI</span>.</span>
             </h1>
             <p class="hero-sub h-rise d-450 mb-8">
-              AI isn't leveling the playing field — it's widening the gap. Some engineers
-              use it to 2x their output. Others use it as a shortcut. TenX tells you
-              which is which.
+                AI leverage is the most important skill in the room.
+  TenX helps you hire the multipliers.
             </p>
             <div class="flex flex-wrap items-center justify-center gap-3 h-rise d-600">
               <a href="#" class="btn-primary">Schedule a Demo</a>
@@ -789,6 +797,11 @@
           opacity: 0.7;
           filter: brightness(0.82);
         }
+        /* Hide contents of background cards — card silhouette stays, internals hidden */
+        #score-card-section .cards-grid > .slot.is-back > * > *,
+        #score-card-section .cards-grid > .slot.is-back-2 > * > * {
+          visibility: hidden;
+        }
         /* Click affordance on the visible card */
         #score-card-section .cards-grid > .slot.is-top:hover {
           transform: translate(0, -3px) scale(1);
@@ -804,7 +817,7 @@
           user-select: none;
         }
         #score-card-section .swap-hint .ico {
-          color: var(--accent-cyan);
+          color: var(--accent-blue);
           font-size: 14px;
           display: inline-block;
           animation: swapPulse 2s ease-in-out infinite;
@@ -859,9 +872,9 @@
           width: 36px; height: 36px;
           display: inline-flex; align-items: center; justify-content: center;
           border-radius: var(--r-md);
-          background: rgba(0,230,118,0.08);
-          border: 1px solid rgba(0,230,118,0.22);
-          color: var(--accent-cyan);
+          background: rgba(124,134,255,0.08);
+          border: 1px solid rgba(124,134,255,0.22);
+          color: var(--accent-blue);
         }
         #score-card-section .pillars-card .p-ico svg {
           width: 18px; height: 18px;
@@ -1585,23 +1598,23 @@
         #real-work .ide .tab.active {
           color: var(--text-primary);
           background: rgba(255,255,255,0.02);
-          box-shadow: inset 0 -1px 0 var(--accent-cyan);
+          box-shadow: inset 0 -1px 0 var(--accent-blue);
         }
         #real-work .ide .tab .dot-mod {
           width: 6px; height: 6px; border-radius: 999px;
-          background: var(--accent-cyan);
+          background: var(--accent-blue);
         }
         /* Fixed-height IDE: drag splits the editor/terminal share inside it,
            so the component never grows. --term-h is the controlled value. */
         #real-work .ide-grid {
-          --term-h: 220px;
+          --term-h: 240px;
           display: grid;
           grid-template-columns: 44px 220px 1fr;
           grid-template-rows: minmax(0, 1fr) var(--term-h);
           grid-template-areas:
             "act exp edt"
             "act exp term";
-          height: 560px;            /* total IDE body height — pinned */
+          height: 580px;            /* total IDE body height — pinned */
         }
         #real-work .ide-activity { grid-area: act; }
         #real-work .ide-explorer { grid-area: exp; }
@@ -1633,7 +1646,7 @@
         }
         #real-work .ide-activity .ai.active {
           color: var(--text-primary);
-          border-left-color: var(--accent-cyan);
+          border-left-color: var(--accent-blue);
         }
         #real-work .ide-activity .ai svg { width: 18px; height: 18px; }
 
@@ -1658,9 +1671,9 @@
         }
         #real-work .ide-explorer .file:hover { background: rgba(255,255,255,0.025); }
         #real-work .ide-explorer .file.active {
-          background: rgba(0,230,118,0.06);
+          background: rgba(124,134,255,0.06);
           color: var(--text-primary);
-          border-left: 2px solid var(--accent-cyan);
+          border-left: 2px solid var(--accent-blue);
           padding-left: 26px;
         }
         #real-work .ide-explorer .file .ic { color: var(--text-muted); font-size: 10px; }
@@ -1693,7 +1706,7 @@
         #real-work .ide-editor .ln .code { color: var(--text-primary); white-space: pre; }
         #real-work .ide-editor .kw { color: #FF7AB6; }    /* keyword */
         #real-work .ide-editor .fn { color: #B6E1FF; }    /* function */
-        #real-work .ide-editor .str { color: #00E676; }   /* string — the brand green */
+        #real-work .ide-editor .str { color: #7C86FF; }   /* string — periwinkle secondary */
         #real-work .ide-editor .com { color: var(--text-muted); font-style: italic; }
         #real-work .ide-editor .num { color: #F5C97B; }
         #real-work .ide-editor .punct { color: var(--text-secondary); }
@@ -1714,8 +1727,8 @@
         }
         #real-work .ide-chat .chat-head .live {
           width: 6px; height: 6px; border-radius: 999px;
-          background: var(--accent-cyan);
-          box-shadow: 0 0 8px rgba(0,230,118,0.7);
+          background: var(--accent-blue);
+          box-shadow: 0 0 8px rgba(124,134,255,0.7);
           animation: livePulse 1.6s ease-in-out infinite;
         }
         @keyframes livePulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
@@ -1737,8 +1750,8 @@
         }
         #real-work .ide-chat .msg.user {
           align-self: flex-end;
-          background: rgba(0,230,118,0.08);
-          border-color: rgba(0,230,118,0.25);
+          background: rgba(124,134,255,0.08);
+          border-color: rgba(124,134,255,0.25);
           color: var(--text-primary);
         }
         #real-work .ide-chat .msg .role {
@@ -1747,7 +1760,7 @@
           text-transform: uppercase; color: var(--text-muted);
           margin-bottom: 4px; display: block;
         }
-        #real-work .ide-chat .msg.user .role { color: var(--accent-cyan); }
+        #real-work .ide-chat .msg.user .role { color: var(--accent-blue); }
 
         #real-work .ide-chat .msg.thinking {
           display: inline-flex; align-items: center; gap: 10px;
@@ -1755,8 +1768,8 @@
         }
         #real-work .spinner {
           width: 14px; height: 14px;
-          border: 2px solid rgba(0,230,118,0.18);
-          border-top-color: var(--accent-cyan);
+          border: 2px solid rgba(124,134,255,0.18);
+          border-top-color: var(--accent-blue);
           border-radius: 999px;
           animation: spin 0.8s linear infinite;
           flex-shrink: 0;
@@ -1777,8 +1790,8 @@
           transition: border-color 160ms ease, background-color 160ms ease;
         }
         #real-work .ide-chat .chat-input form:focus-within {
-          border-color: rgba(0,230,118,0.45);
-          background: rgba(0,230,118,0.04);
+          border-color: rgba(124,134,255,0.45);
+          background: rgba(124,134,255,0.04);
         }
         #real-work .ide-chat .chat-input input {
           flex: 1; min-width: 0;
@@ -1786,7 +1799,7 @@
           color: var(--text-primary);
           font-family: 'Space Grotesk', system-ui, sans-serif;
           font-size: 13px;
-          caret-color: var(--accent-cyan);
+          caret-color: var(--accent-blue);
         }
         #real-work .ide-chat .chat-input input::placeholder { color: var(--text-muted); }
         #real-work .ide-chat .chat-input button {
@@ -1835,7 +1848,7 @@
         }
         #real-work .ide-term .term-resize:hover::after,
         #real-work .ide-term.is-resizing .term-resize::after {
-          background: rgba(0,230,118,0.5);
+          background: rgba(124,134,255,0.5);
         }
         #real-work .ide-term.is-resizing { user-select: none; }
 
@@ -1850,7 +1863,7 @@
           background: var(--glass-border);
         }
         #real-work .ide-term .term-banner .name {
-          color: var(--accent-cyan);
+          color: var(--accent-blue);
           letter-spacing: 0.12em;
           font-weight: 500;
         }
@@ -1858,7 +1871,7 @@
         #real-work .ide-term .term-hint    { color: var(--text-muted);   margin-bottom: 4px; }
         #real-work .ide-term .term-hint code,
         #real-work .ide-term .term-cmd-tag {
-          color: var(--accent-cyan); background: rgba(0,230,118,0.06);
+          color: var(--accent-blue); background: rgba(124,134,255,0.06);
           padding: 0 4px; border-radius: 3px;
         }
         #real-work .ide-term .term-divider {
@@ -1869,8 +1882,8 @@
         #real-work .ide-term .term-status {
           color: var(--text-secondary);
         }
-        #real-work .ide-term .term-status .clk { color: var(--accent-cyan); }
-        #real-work .ide-term .term-status .arrow { color: var(--accent-cyan); margin: 0 6px; }
+        #real-work .ide-term .term-status .clk { color: var(--accent-blue); }
+        #real-work .ide-term .term-status .arrow { color: var(--accent-blue); margin: 0 6px; }
         #real-work .ide-term .term-tabs {
           display: flex; align-items: center; gap: 0;
           padding: 0 10px;
@@ -1887,12 +1900,12 @@
         }
         #real-work .ide-term .term-tab.active {
           color: var(--text-primary);
-          border-bottom-color: var(--accent-cyan);
+          border-bottom-color: var(--accent-blue);
         }
         #real-work .ide-term .term-tab .live {
           display: inline-block; width: 6px; height: 6px;
-          border-radius: 999px; background: var(--accent-cyan);
-          box-shadow: 0 0 8px rgba(0,230,118,0.7);
+          border-radius: 999px; background: var(--accent-blue);
+          box-shadow: 0 0 8px rgba(124,134,255,0.7);
           margin-right: 6px; vertical-align: middle;
           animation: livePulse 1.6s ease-in-out infinite;
         }
@@ -1906,9 +1919,9 @@
           padding: 12px 16px;
         }
         #real-work .ide-term .term-line { white-space: pre-wrap; }
-        #real-work .ide-term .term-line .ps { color: var(--accent-cyan); margin-right: 8px; }
+        #real-work .ide-term .term-line .ps { color: var(--accent-blue); margin-right: 8px; }
         #real-work .ide-term .term-line .out { color: var(--text-secondary); }
-        #real-work .ide-term .term-line .ok  { color: var(--accent-cyan); }
+        #real-work .ide-term .term-line .ok  { color: var(--accent-blue); }
         #real-work .ide-term .term-line .dim { color: var(--text-muted); }
         #real-work .ide-term .term-thinking {
           display: inline-flex; align-items: center; gap: 8px;
@@ -1916,8 +1929,8 @@
         }
         #real-work .ide-term .term-thinking .spinner {
           width: 12px; height: 12px;
-          border: 2px solid rgba(0,230,118,0.18);
-          border-top-color: var(--accent-cyan);
+          border: 2px solid rgba(124,134,255,0.18);
+          border-top-color: var(--accent-blue);
           border-radius: 999px;
           animation: spin 0.8s linear infinite;
         }
@@ -1932,9 +1945,9 @@
           cursor: text;
           transition: background-color 160ms ease;
         }
-        #real-work .ide-term .term-prompt-line:hover { background: rgba(0,230,118,0.06); }
+        #real-work .ide-term .term-prompt-line:hover { background: rgba(124,134,255,0.06); }
         #real-work .ide-term .term-prompt-line.is-active:hover { background: transparent; }
-        #real-work .ide-term .term-prompt-line .ps { color: var(--accent-cyan); flex-shrink: 0; }
+        #real-work .ide-term .term-prompt-line .ps { color: var(--accent-blue); flex-shrink: 0; }
         /* Field: shrink-to-content via a width-mirror so the cursor sits
            immediately after the placeholder/typed text. */
         #real-work .ide-term .term-prompt-line .field {
@@ -1956,13 +1969,13 @@
           font-family: 'IBM Plex Mono', ui-monospace, monospace;
           font-size: 12.5px; line-height: 1.5;
           padding: 0;
-          caret-color: var(--accent-cyan);
+          caret-color: var(--accent-blue);
         }
         #real-work .ide-term .term-prompt-line input::placeholder { color: var(--text-muted); }
         /* At-rest cursor block: anchored RIGHT NEXT TO the placeholder text. */
         #real-work .ide-term .term-prompt-line .rest-cursor {
           width: 9px; height: 16px;
-          background: var(--accent-cyan);
+          background: var(--accent-blue);
           flex-shrink: 0;
           margin-left: 4px;
           align-self: center;
@@ -1976,7 +1989,7 @@
           margin-left: 10px;
           font-family: 'IBM Plex Mono', ui-monospace, monospace;
           font-size: 10.5px; letter-spacing: 0.08em;
-          color: var(--accent-cyan);
+          color: var(--accent-blue);
           opacity: 0;
           transform: translateX(-6px);
           transition: opacity 240ms ease, transform 240ms ease;
@@ -1996,14 +2009,14 @@
           display: flex; align-items: baseline; gap: 8px;
           line-height: 1.5;
         }
-        #real-work .ide-term .term-echo .ps { color: var(--accent-cyan); flex-shrink: 0; }
+        #real-work .ide-term .term-echo .ps { color: var(--accent-blue); flex-shrink: 0; }
 
         /* Status bar */
         #real-work .ide-status {
           display: flex; align-items: center; gap: 14px;
           padding: 6px 14px;
           border-top: 1px solid var(--glass-border);
-          background: rgba(0,230,118,0.06);
+          background: rgba(124,134,255,0.06);
           font-size: 10px; letter-spacing: 0.1em;
           text-transform: uppercase; color: var(--text-secondary);
         }
@@ -2011,7 +2024,7 @@
           display: inline-flex; align-items: center; gap: 6px;
           color: var(--text-primary);
         }
-        #real-work .ide-status .pill .dt { color: var(--accent-cyan); }
+        #real-work .ide-status .pill .dt { color: var(--accent-blue); }
         #real-work .ide-status .spacer { flex: 1; }
 
         /* Pointer rail under the IDE — three labeled callouts that
@@ -2031,11 +2044,11 @@
         #real-work .rw-pointer {
           display: flex; gap: 10px; align-items: flex-start;
           padding-top: 10px;
-          border-top: 1px dashed rgba(0,230,118,0.25);
+          border-top: 1px dashed rgba(124,134,255,0.25);
           font-family: 'IBM Plex Mono', ui-monospace, monospace;
         }
         #real-work .rw-pointer .up {
-          color: var(--accent-cyan);
+          color: var(--accent-blue);
           flex-shrink: 0;
           font-size: 16px; line-height: 1;
           margin-top: -1px;
@@ -2054,6 +2067,77 @@
           color: var(--text-secondary);
           font-size: 12px; line-height: 1.5;
         }
+
+        /* ── Device shell ── */
+        #real-work .device-scene {
+          perspective: 2200px;
+          display: flex; align-items: center; justify-content: center;
+        }
+        #real-work .device-shell {
+          position: relative;
+          transform-style: preserve-3d;
+          will-change: transform;
+          width: 100%;
+        }
+        #real-work .layer-back {
+          position: absolute; inset: 0;
+          background: linear-gradient(180deg, #1f2128 0%, #0e1014 100%);
+          border-radius: 18px;
+          border: 1px solid rgba(255,255,255,0.07);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+          pointer-events: none;
+          will-change: transform;
+          transform: translateZ(-8px);
+        }
+        #real-work .layer-bezel {
+          position: absolute; inset: 0;
+          background: #0a0a0d;
+          border-radius: 16px;
+          border: 1px solid rgba(255,255,255,0.11);
+          box-shadow: inset 0 0 0 2px rgba(255,255,255,0.04), 0 20px 60px rgba(0,0,0,0.5);
+          pointer-events: none;
+          will-change: transform;
+          transform: translateZ(0px);
+        }
+        #real-work .layer-keyboard {
+          position: absolute;
+          left: -32px; right: -32px; bottom: -28px;
+          height: 28px;
+          background: linear-gradient(180deg, #2a2d36 0%, #14161c 100%);
+          border-radius: 0 0 10px 10px;
+          border: 1px solid rgba(255,255,255,0.05);
+          box-shadow: 0 24px 48px rgba(0,0,0,0.55);
+          transform-origin: top center;
+          pointer-events: none;
+          will-change: transform;
+          transform: translateZ(0px) rotateX(78deg);
+        }
+        #real-work .layer-screen {
+          position: relative;
+          margin: 14px;
+          border-radius: 10px;
+          overflow: hidden;
+          will-change: transform;
+          transform: translateZ(0px);
+        }
+        #real-work .layer-screen .ide {
+          opacity: 0;
+          transition: opacity 800ms ease;
+        }
+        #real-work .layer-screen.screen-awake .ide { opacity: 1; }
+        #real-work .layer-screen::after {
+          content: "";
+          position: absolute; inset: 0;
+          background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,0.13) 50%, transparent 62%);
+          transform: translateX(-120%);
+          pointer-events: none;
+          mix-blend-mode: screen;
+          z-index: 10;
+        }
+        #real-work .layer-screen.shimmer::after {
+          transition: transform 550ms cubic-bezier(0.4, 0, 0.2, 1);
+          transform: translateX(120%);
+        }
       </style>
       <div class="max-w-content mx-auto px-6 md:px-10">
         <div class="flex flex-col items-start gap-6 mb-16">
@@ -2068,7 +2152,13 @@
           </p>
         </div>
 
-        <div class="ide reveal" role="region" aria-label="Mock VSCode environment with chat panel — try typing a prompt below.">
+        <div class="device-scene reveal">
+          <div class="device-shell">
+            <div class="layer-back" aria-hidden="true"></div>
+            <div class="layer-keyboard" aria-hidden="true"></div>
+            <div class="layer-bezel" aria-hidden="true"></div>
+            <div class="layer-screen">
+        <div class="ide" role="region" aria-label="Mock VSCode environment with chat panel — try typing a prompt below.">
 
           <!-- Tab bar with mac chrome -->
           <div class="tabbar">
@@ -2204,6 +2294,9 @@
           </div>
 
         </div><!-- /.ide -->
+            </div><!-- /.layer-screen -->
+          </div><!-- /.device-shell -->
+        </div><!-- /.device-scene -->
       </div>
 
       <script>
@@ -2311,6 +2404,88 @@
             }, 1600);
           });
         })();
+
+        // ── Device assembly spring animation ──
+        (function () {
+          var scene      = document.querySelector('#real-work .device-scene');
+          var shell      = document.querySelector('#real-work .device-shell');
+          var layerBack  = document.querySelector('#real-work .layer-back');
+          var layerKbd   = document.querySelector('#real-work .layer-keyboard');
+          var layerBezel = document.querySelector('#real-work .layer-bezel');
+          var layerScr   = document.querySelector('#real-work .layer-screen');
+          if (!shell) return;
+
+          var state = {
+            lidZ:    { x: 700,  v: 0, t: 0 },
+            baseZ:   { x: -600, v: 0, t: 0 },
+            bezelZ:  { x: 400,  v: 0, t: 0 },
+            screenZ: { x: 200,  v: 0, t: 0 },
+            rotX:    { x: -20,  v: 0, t: 0 },
+            rotY:    { x: 18,   v: 0, t: 0 },
+          };
+
+          var CFG = { stiffness: 0.045, damping: 0.82, mass: 2.0 };
+
+          function stepSpring(s) {
+            var force = (s.t - s.x) * CFG.stiffness;
+            s.v = s.v * CFG.damping + force / CFG.mass;
+            s.x += s.v;
+          }
+
+          function settled() {
+            return Object.keys(state).every(function (k) {
+              var s = state[k];
+              return Math.abs(s.t - s.x) < 0.15 && Math.abs(s.v) < 0.05;
+            });
+          }
+
+          var screenAwoken = false;
+
+          function tick() {
+            Object.keys(state).forEach(function (k) { stepSpring(state[k]); });
+
+            shell.style.transform =
+              'rotateX(' + state.rotX.x.toFixed(3) + 'deg) rotateY(' + state.rotY.x.toFixed(3) + 'deg)';
+            layerBack.style.transform  = 'translateZ(' + (state.lidZ.x - 8).toFixed(2) + 'px)';
+            layerKbd.style.transform   = 'translateZ(' + state.baseZ.x.toFixed(2) + 'px) rotateX(78deg)';
+            layerBezel.style.transform = 'translateZ(' + state.bezelZ.x.toFixed(2) + 'px)';
+            layerScr.style.transform   = 'translateZ(' + state.screenZ.x.toFixed(2) + 'px)';
+
+            if (!settled()) {
+              requestAnimationFrame(tick);
+            } else {
+              if (!screenAwoken) {
+                screenAwoken = true;
+                // Shimmer sweeps first — IDE fades in 200ms later so the swipe leads the reveal
+                setTimeout(function () {
+                  layerScr.classList.add('shimmer');
+                  setTimeout(function () { layerScr.classList.add('screen-awake'); }, 200);
+                }, 120);
+              }
+              shell.style.transform = 'rotateX(0deg) rotateY(0deg)';
+              layerBack.style.transform  = 'translateZ(-8px)';
+              layerKbd.style.transform   = 'translateZ(0px) rotateX(78deg)';
+              layerBezel.style.transform = 'translateZ(0px)';
+              layerScr.style.transform   = 'translateZ(0px)';
+            }
+          }
+
+          if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            layerScr.classList.add('screen-awake');
+            return;
+          }
+
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                io.disconnect();
+                requestAnimationFrame(tick);
+              }
+            });
+          }, { threshold: 0.15 });
+
+          io.observe(scene);
+        })();
       </script>
     </section>
 
@@ -2377,8 +2552,8 @@
         }
         #defense .df-chat .chat-head .live {
           width: 6px; height: 6px; border-radius: 999px;
-          background: var(--accent-cyan);
-          box-shadow: 0 0 8px rgba(0,230,118,0.7);
+          background: var(--accent-blue);
+          box-shadow: 0 0 8px rgba(124,134,255,0.7);
           animation: livePulse 1.6s ease-in-out infinite;
         }
         #defense .df-chat .chat-head .session {
@@ -2392,17 +2567,17 @@
           font-size: 11px; font-weight: 500;
           letter-spacing: 0.04em; text-transform: none;
           color: var(--text-primary);
-          background: rgba(0,230,118,0.08);
-          border: 1px solid rgba(0,230,118,0.3);
+          background: rgba(124,134,255,0.08);
+          border: 1px solid rgba(124,134,255,0.3);
           padding: 5px 10px; border-radius: var(--r-full);
           display: inline-flex; align-items: center; gap: 6px;
           cursor: pointer;
           transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, opacity 160ms ease;
         }
         #defense .df-replay:hover {
-          background: rgba(0,230,118,0.16);
-          border-color: rgba(0,230,118,0.5);
-          color: var(--accent-cyan);
+          background: rgba(124,134,255,0.16);
+          border-color: rgba(124,134,255,0.5);
+          color: var(--accent-blue);
         }
         #defense .df-replay:disabled {
           opacity: 0.4; cursor: not-allowed;
@@ -2433,8 +2608,8 @@
         #defense .df-msg.in { opacity: 1; transform: translateY(0); }
         #defense .df-msg.tenx {
           align-self: flex-start;
-          border-color: rgba(0,230,118,0.18);
-          background: rgba(0,230,118,0.05);
+          border-color: rgba(124,134,255,0.18);
+          background: rgba(124,134,255,0.05);
         }
         #defense .df-msg.you {
           align-self: flex-end;
@@ -2449,7 +2624,7 @@
           color: var(--text-muted);
           margin-bottom: 6px;
         }
-        #defense .df-msg.tenx .role { color: var(--accent-cyan); }
+        #defense .df-msg.tenx .role { color: var(--accent-blue); }
         #defense .df-msg.you  .role { color: #B6E1FF; }
         #defense .df-msg .body { color: var(--text-primary); }
 
@@ -2469,8 +2644,8 @@
           align-self: stretch;
           margin-top: 4px;
           padding: 12px 14px;
-          border: 1px solid rgba(0,230,118,0.3);
-          background: rgba(0,230,118,0.05);
+          border: 1px solid rgba(124,134,255,0.3);
+          background: rgba(124,134,255,0.05);
           border-radius: var(--r-md);
           font-family: 'IBM Plex Mono', ui-monospace, monospace;
           font-size: 12px; line-height: 1.5;
@@ -2480,7 +2655,7 @@
         }
         #defense .df-verdict.in { opacity: 1; transform: translateY(0); }
         #defense .df-verdict .label {
-          color: var(--accent-cyan);
+          color: var(--accent-blue);
           letter-spacing: 0.12em; text-transform: uppercase;
           font-size: 10px; margin-right: 8px;
         }
@@ -2495,7 +2670,7 @@
           letter-spacing: 0.08em;
           display: flex; align-items: center; gap: 10px;
         }
-        #defense .df-foot .mark { color: var(--accent-cyan); }
+        #defense .df-foot .mark { color: var(--accent-blue); }
 
         @media (prefers-reduced-motion: reduce) {
           #defense .df-msg, #defense .df-verdict { opacity: 1 !important; transform: none !important; transition: none !important; }
@@ -2744,9 +2919,9 @@
           display: block;
           filter: brightness(0) invert(0.45);
         }
-        #eval-standards .es-logo[alt="OpenAI"]    { height: 36px; }
-        #eval-standards .es-logo[alt="Anthropic"] { height: 20px; }
-        #eval-standards .es-logo[alt="Google"]    { height: 40px; }
+        #eval-standards .es-logo[alt="OpenAI"]    { height: 24px; }
+        #eval-standards .es-logo[alt="Anthropic"] { height: 12px; }
+        #eval-standards .es-logo[alt="Google"]    { height: 24px; }
         #eval-standards .es-rule {
           font-family: 'IBM Plex Mono', ui-monospace, monospace;
           font-size: 12px; line-height: 1.6;
@@ -2756,32 +2931,305 @@
           border-top: 1px solid var(--border);
           max-width: 520px;
         }
+        #eval-standards .es-split {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 80px;
+          align-items: center;
+        }
+        @media (max-width: 900px) {
+          #eval-standards .es-split {
+            grid-template-columns: 1fr;
+            gap: 60px;
+          }
+        }
+        #eval-standards .es-delta {
+          border: 1px solid var(--border);
+          padding: 32px 28px;
+          font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        }
+        #eval-standards .es-delta-label {
+          font-size: 10px; letter-spacing: 0.18em;
+          text-transform: uppercase; color: var(--text-muted);
+          margin-bottom: 24px;
+        }
+        /* Zoom-call side-by-side layout */
+        #eval-standards .es-zoom-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+          margin-bottom: 24px;
+        }
+        #eval-standards .es-zoom-tile {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+          border: 1px solid var(--border);
+          border-radius: var(--r-md);
+          padding: 18px 12px 14px;
+          background: var(--bg-base);
+          position: relative;
+        }
+        #eval-standards .es-zoom-tile.candidate-a {
+          border-color: rgba(0, 230, 118, 0.25);
+          box-shadow: 0 0 0 1px rgba(0,230,118,0.08) inset;
+        }
+        #eval-standards .es-zoom-tile.candidate-b {
+          border-color: var(--border);
+        }
+        #eval-standards .es-zoom-avatar {
+          width: 52px; height: 52px;
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 22px;
+          line-height: 1;
+        }
+        #eval-standards .es-zoom-tile.candidate-a .es-zoom-avatar {
+          background: rgba(0,230,118,0.12);
+          border: 1px solid rgba(0,230,118,0.3);
+        }
+        #eval-standards .es-zoom-tile.candidate-b .es-zoom-avatar {
+          background: rgba(68,76,99,0.25);
+          border: 1px solid rgba(68,76,99,0.5);
+        }
+        #eval-standards .es-zoom-name {
+          font-size: 9.5px; letter-spacing: 0.16em;
+          text-transform: uppercase;
+        }
+        #eval-standards .es-zoom-tile.candidate-a .es-zoom-name { color: #00E676; }
+        #eval-standards .es-zoom-tile.candidate-b .es-zoom-name { color: var(--text-muted); }
+        #eval-standards .es-zoom-stats {
+          font-size: 11px; line-height: 1.6;
+          text-align: center;
+        }
+        #eval-standards .es-zoom-tile.candidate-a .es-zoom-stats { color: var(--text-primary); }
+        #eval-standards .es-zoom-tile.candidate-b .es-zoom-stats { color: var(--text-muted); }
+        #eval-standards .es-zoom-mic {
+          position: absolute; bottom: 8px; right: 8px;
+          width: 16px; height: 16px;
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          font-size: 9px;
+        }
+        #eval-standards .es-zoom-tile.candidate-a .es-zoom-mic {
+          background: rgba(0,230,118,0.15);
+          color: #00E676;
+        }
+        #eval-standards .es-zoom-tile.candidate-b .es-zoom-mic {
+          background: rgba(68,76,99,0.3);
+          color: var(--text-muted);
+        }
+        #eval-standards .es-delta-row {
+          display: grid;
+          grid-template-columns: auto 1fr;
+          gap: 16px;
+          align-items: baseline;
+          padding: 12px 0;
+          border-bottom: 1px solid var(--border);
+        }
+        #eval-standards .es-delta-row:last-of-type { border-bottom: none; }
+        #eval-standards .es-delta-name {
+          font-size: 11px; letter-spacing: 0.1em;
+          text-transform: uppercase;
+        }
+        #eval-standards .es-delta-row.candidate-a .es-delta-name { color: #00E676; }
+        #eval-standards .es-delta-row.candidate-b .es-delta-name { color: var(--text-muted); }
+        #eval-standards .es-delta-stats {
+          font-size: 13px; line-height: 1.7;
+          text-align: right;
+        }
+        #eval-standards .es-delta-row.candidate-a .es-delta-stats { color: var(--text-primary); }
+        #eval-standards .es-delta-row.candidate-b .es-delta-stats { color: var(--text-muted); }
+        #eval-standards .es-delta-verdict {
+          margin-top: 20px;
+          padding-top: 20px;
+          border-top: 1px solid var(--border);
+          font-size: 11px; letter-spacing: 0.08em;
+          color: var(--text-muted);
+        }
+        #eval-standards .es-delta-verdict strong {
+          color: var(--text-secondary);
+          font-weight: 500;
+        }
+        #eval-standards .es-delta-footnote {
+          margin-top: 14px;
+          font-size: 10px; letter-spacing: 0.06em;
+          color: #2d3450;
+          line-height: 1.5;
+        }
       </style>
 
       <div class="max-w-content mx-auto px-6 md:px-10">
-        <span class="es-eyebrow reveal">// EVALUATION</span>
-        <h2 class="es-h2 reveal" style="margin-top:24px">
-          Calibrated to the bar at the <span class="accent">best AI labs.</span>
-        </h2>
-        <p class="es-body reveal">
-          Our evaluation criteria are modeled on engineering standards at
-          OpenAI, Anthropic, and Google — what those teams look for
-          when they hire engineers who build alongside AI every day.
-        </p>
-        <div class="es-logos reveal">
-          <img class="es-logo" src="openai.svg" alt="OpenAI" />
-          <img class="es-logo" src="anthropic.svg" alt="Anthropic" />
-          <img class="es-logo" src="google.webp" alt="Google" />
+        <div class="es-split">
+          <div>
+            <span class="es-eyebrow reveal">// EVALUATION</span>
+            <h2 class="es-h2 reveal" style="margin-top:24px">
+              Calibrated to the bar at the <span class="accent">best AI labs.</span>
+            </h2>
+            <p class="es-body reveal">
+              Our evaluation criteria are modeled on engineering standards at
+              OpenAI, Anthropic, and Google — what those teams look for
+              when they hire engineers who build alongside AI every day.
+            </p>
+            <div class="es-logos reveal">
+              <img class="es-logo" src="openai.svg" alt="OpenAI" />
+              <img class="es-logo" src="anthropic.svg" alt="Anthropic" />
+              <img class="es-logo" src="google.webp" alt="Google" />
+            </div>
+            <p class="es-rule reveal">
+              Tools change daily. Workflows evolve. The engineering judgment
+              underneath is portable — that's what we measure.
+            </p>
+          </div>
+          <div class="es-delta reveal">
+            <div class="es-delta-label">Same output. Different engineer.</div>
+            <div class="es-zoom-row">
+              <!-- Candidate A -->
+              <div class="es-zoom-tile candidate-a">
+                <div class="es-zoom-avatar">🧑‍💻</div>
+                <div class="es-zoom-name">Candidate A</div>
+                <div class="es-zoom-stats">6 prompts<br>1 iteration<br>94% AI accepted</div>
+                <div class="es-zoom-mic">🎙</div>
+              </div>
+              <!-- Candidate B -->
+              <div class="es-zoom-tile candidate-b">
+                <div class="es-zoom-avatar">👤</div>
+                <div class="es-zoom-name">Candidate B</div>
+                <div class="es-zoom-stats">31 prompts<br>9 iterations<br>41% AI accepted</div>
+                <div class="es-zoom-mic" style="color:var(--text-muted);opacity:0.4">🔇</div>
+              </div>
+            </div>
+            <div class="es-delta-verdict">
+              <strong>Both passed the tests.</strong>
+            </div>
+            <div class="es-delta-footnote">
+              // AI accepted — suggestions taken without manual edit
+            </div>
+          </div>
         </div>
-        <p class="es-rule reveal">
-          Tools change daily. Workflows evolve. The engineering judgment
-          underneath is portable — that's what we measure.
-        </p>
       </div>
     </section>
 
         <!-- ═══════════════════════════════════════════════════════════
          THE PROBLEM — HIRING BLIND
+         ═══════════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════
+         THE GAP
+         ═══════════════════════════════════════════════════════════ -->
+    <section id="problem" class="relative py-[120px]">
+      <style>
+        #problem .pull-quote {
+          font-family: 'Space Grotesk', system-ui, sans-serif;
+          font-weight: 600;
+          font-size: clamp(30px, 5vw, 56px);
+          line-height: 1.08;
+          letter-spacing: -0.03em;
+        }
+        #problem .pull-quote .accent {
+          background: linear-gradient(180deg, #B6FFD7 0%, #00E676 100%);
+          -webkit-background-clip: text; background-clip: text;
+          color: transparent;
+        }
+        #problem .cmp-shell {
+          position: relative;
+          background: var(--glass-bg);
+          backdrop-filter: blur(24px) saturate(160%);
+          -webkit-backdrop-filter: blur(24px) saturate(160%);
+          border: 1px solid var(--glass-border);
+          border-radius: var(--r-lg);
+          overflow: hidden;
+          box-shadow:
+            inset 0 1px 0 rgba(255,255,255,0.04),
+            0 24px 60px -28px rgba(0,0,0,0.55);
+        }
+        #problem .cmp-table {
+          width: 100%; border-collapse: collapse;
+          font-family: 'IBM Plex Mono', ui-monospace, monospace;
+          font-size: 14px;
+        }
+        #problem .cmp-table thead th {
+          text-align: left; font-weight: 500;
+          padding: 14px 20px;
+          color: var(--text-muted);
+          font-size: 11px; letter-spacing: 0.15em;
+          text-transform: uppercase;
+          border-bottom: 1px solid var(--border);
+        }
+        #problem .cmp-table thead th { border-bottom: 1px solid var(--glass-border); }
+        #problem .cmp-table thead th.tenx-col { color: var(--accent-cyan); }
+        #problem .cmp-table tbody th {
+          text-align: left; font-weight: 400;
+          padding: 18px 22px;
+          color: var(--text-muted); white-space: nowrap;
+          border-bottom: 1px solid var(--glass-border);
+          width: 22%;
+        }
+        #problem .cmp-table td {
+          padding: 18px 22px; vertical-align: top;
+          border-bottom: 1px solid var(--glass-border);
+          color: var(--text-secondary);
+        }
+        #problem .cmp-table td.tenx-val {
+          color: var(--text-primary);
+          background: linear-gradient(90deg, rgba(0,230,118,0.06), rgba(0,230,118,0));
+          border-left: 1px solid rgba(0,230,118,0.4);
+        }
+        #problem .cmp-table tbody tr:last-child th,
+        #problem .cmp-table tbody tr:last-child td { border-bottom: none; }
+      </style>
+      <div class="max-w-content mx-auto px-6 md:px-10">
+        <div class="flex flex-col items-center text-center">
+          <span class="section-label reveal">THE GAP</span>
+          <h2 class="pull-quote mt-8 max-w-[960px]">
+            <span class="block text-fg-secondary reveal">Some engineers 2x their output with AI.</span>
+            <span class="block text-fg-secondary reveal">Others use it as a shortcut.</span>
+            <span class="block text-fg-primary reveal mt-2">Traditional hiring <span class="accent">can't tell the difference</span>.</span>
+          </h2>AI-Code Reasoning
+        </div>
+        <div class="mt-20 cmp-shell reveal">
+          <div class="win-header" aria-hidden="true">
+            <span class="win-dots"><i></i><i></i><i></i></span>
+            <span class="win-title">assessment_comparison.tsv</span>
+            <span style="width:54px"></span>
+          </div>
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th scope="col"><span class="sr-only">Category</span></th>
+                <th scope="col">Traditional OA</th>
+                <th scope="col" class="tenx-col">TenX Assessment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">What's Measured</th>
+                <td>Algorithmic recall, syntax under pressure</td>
+                <td class="tenx-val">Prompting, iteration, AI-code reasoning</td>
+              </tr>
+              <tr>
+                <th scope="row">Time</th>
+                <td>60–90 min, high-stakes timer</td>
+                <td class="tenx-val">~60 min session, ~60s to report</td>
+              </tr>
+              <tr>
+                <th scope="row">Signal Type</th>
+                <td>Binary pass / fail</td>
+                <td class="tenx-val">5 pillars, 25-point scale</td>
+              </tr>
+              <tr>
+                <th scope="row">False Negatives</th>
+                <td>High — penalizes AI-native workflows</td>
+                <td class="tenx-val">Low — rewards leverage, not recall</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         THE PROBLEM
          ═══════════════════════════════════════════════════════════ -->
     <section id="hiring-blind" class="relative py-[120px]">
       <style>
@@ -2886,257 +3334,128 @@
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         THE PROBLEM
-         ═══════════════════════════════════════════════════════════ -->
-    <section id="problem" class="relative py-[120px]">
-      <style>
-        #problem .pull-quote {
-          font-family: 'Space Grotesk', system-ui, sans-serif;
-          font-weight: 600;
-          font-size: clamp(30px, 5vw, 56px);
-          line-height: 1.08;
-          letter-spacing: -0.03em;
-        }
-        #problem .pull-quote .accent {
-          background: linear-gradient(180deg, #B6FFD7 0%, #00E676 100%);
-          -webkit-background-clip: text; background-clip: text;
-          color: transparent;
-        }
-        #problem .cmp-shell {
-          position: relative;
-          background: var(--glass-bg);
-          backdrop-filter: blur(24px) saturate(160%);
-          -webkit-backdrop-filter: blur(24px) saturate(160%);
-          border: 1px solid var(--glass-border);
-          border-radius: var(--r-lg);
-          overflow: hidden;
-          box-shadow:
-            inset 0 1px 0 rgba(255,255,255,0.04),
-            0 24px 60px -28px rgba(0,0,0,0.55);
-        }
-        #problem .cmp-table {
-          width: 100%; border-collapse: collapse;
-          font-family: 'IBM Plex Mono', ui-monospace, monospace;
-          font-size: 14px;
-        }
-        #problem .cmp-table thead th {
-          text-align: left; font-weight: 500;
-          padding: 14px 20px;
-          color: var(--text-muted);
-          font-size: 11px; letter-spacing: 0.15em;
-          text-transform: uppercase;
-          border-bottom: 1px solid var(--border);
-        }
-        #problem .cmp-table thead th { border-bottom: 1px solid var(--glass-border); }
-        #problem .cmp-table thead th.tenx-col { color: var(--accent-cyan); }
-        #problem .cmp-table tbody th {
-          text-align: left; font-weight: 400;
-          padding: 18px 22px;
-          color: var(--text-muted); white-space: nowrap;
-          border-bottom: 1px solid var(--glass-border);
-          width: 22%;
-        }
-        #problem .cmp-table td {
-          padding: 18px 22px; vertical-align: top;
-          border-bottom: 1px solid var(--glass-border);
-          color: var(--text-secondary);
-        }
-        #problem .cmp-table td.tenx-val {
-          color: var(--text-primary);
-          background: linear-gradient(90deg, rgba(0,230,118,0.06), rgba(0,230,118,0));
-          border-left: 1px solid rgba(0,230,118,0.4);
-        }
-        #problem .cmp-table tbody tr:last-child th,
-        #problem .cmp-table tbody tr:last-child td { border-bottom: none; }
-      </style>
-      <div class="max-w-content mx-auto px-6 md:px-10">
-        <div class="flex flex-col items-center text-center">
-          <span class="section-label reveal">THE GAP</span>
-          <h2 class="pull-quote mt-8 max-w-[960px]">
-            <span class="block text-fg-secondary reveal">Some engineers 2x their output with AI.</span>
-            <span class="block text-fg-secondary reveal">Others use it as a shortcut.</span>
-            <span class="block text-fg-primary reveal mt-2">Traditional hiring <span class="accent">can't tell the difference</span>.</span>
-          </h2>
-        </div>
-        <div class="mt-20 cmp-shell reveal">
-          <div class="win-header" aria-hidden="true">
-            <span class="win-dots"><i></i><i></i><i></i></span>
-            <span class="win-title">assessment_comparison.tsv</span>
-            <span style="width:54px"></span>
-          </div>
-          <table class="cmp-table">
-            <thead>
-              <tr>
-                <th scope="col"><span class="sr-only">Category</span></th>
-                <th scope="col">Traditional OA</th>
-                <th scope="col" class="tenx-col">TenX Assessment</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">What's Measured</th>
-                <td>Algorithmic recall, syntax under pressure</td>
-                <td class="tenx-val">Prompting, iteration, AI-code reasoning</td>
-              </tr>
-              <tr>
-                <th scope="row">Time</th>
-                <td>60–90 min, high-stakes timer</td>
-                <td class="tenx-val">~60 min session, ~60s to report</td>
-              </tr>
-              <tr>
-                <th scope="row">Signal Type</th>
-                <td>Binary pass / fail</td>
-                <td class="tenx-val">5 pillars, 25-point scale</td>
-              </tr>
-              <tr>
-                <th scope="row">False Negatives</th>
-                <td>High — penalizes AI-native workflows</td>
-                <td class="tenx-val">Low — rewards leverage, not recall</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
     
 
     <!-- ═══════════════════════════════════════════════════════════
-         HOW IT WORKS
+         WHERE TENX SITS + THE PROCESS (combined)
          ═══════════════════════════════════════════════════════════ -->
     <section id="how-it-works" class="relative py-[120px]">
       <style>
-        #how-it-works .step-num {
-          font-family: 'IBM Plex Mono', ui-monospace, monospace;
-          font-weight: 500; font-size: 44px; line-height: 1;
-          color: var(--accent-cyan);
-          font-feature-settings: 'tnum' 1;
-        }
-        #how-it-works .step-title {
-          font-family: 'Syne', system-ui, sans-serif;
-          font-weight: 700; font-size: 20px;
-          letter-spacing: -0.01em; color: var(--text-primary);
-        }
-        #how-it-works .step-desc {
-          font-family: 'IBM Plex Mono', ui-monospace, monospace;
-          font-size: 13px; line-height: 1.55;
-          color: var(--text-secondary);
-        }
-        @media (min-width: 768px) {
-          #how-it-works .step { position: relative; }
-          #how-it-works .step:not(:last-child)::after {
-            content: ""; position: absolute;
-            top: 22px; left: calc(100% - 8px); right: -24px;
-            height: 0;
-            border-top: 1px dashed var(--border-bright);
-            pointer-events: none;
-          }
-        }
-      </style>
-      <div class="max-w-content mx-auto px-6 md:px-10">
-        <div class="flex flex-col items-start">
-          <span class="section-label reveal">THE PROCESS</span>
-          <h2 class="mt-4 font-display font-bold text-fg-primary text-3xl md:text-4xl reveal">
-            Invite to score in four steps.
-          </h2>
-        </div>
-        <ol class="mt-16 grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-6">
-          <li class="step reveal">
-            <div class="step-num">01</div>
-            <div class="mt-6 step-title">Candidate invited</div>
-            <p class="mt-3 step-desc">One-click link. No install, no portal. Works from any browser.</p>
-          </li>
-          <li class="step reveal">
-            <div class="step-num">02</div>
-            <div class="mt-6 step-title">Timed session in Codespace</div>
-            <p class="mt-3 step-desc">~60 min sandbox with AI tools enabled. Real work, not puzzles.</p>
-          </li>
-          <li class="step reveal">
-            <div class="step-num">03</div>
-            <div class="mt-6 step-title">AI logs captured</div>
-            <p class="mt-3 step-desc">Every prompt, iteration, and acceptance recorded for scoring.</p>
-          </li>
-          <li class="step reveal">
-            <div class="step-num">04</div>
-            <div class="mt-6 step-title">Score delivered in &lt;60s</div>
-            <p class="mt-3 step-desc">Five pillars, 25-point scale, signal language. Ready to share.</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         POSITIONING / FUNNEL
-         ═══════════════════════════════════════════════════════════ -->
-    <section id="positioning" class="relative py-[120px]">
-      <style>
-        #positioning .funnel {
+        /* ── funnel (where tenx sits) ── */
+        #how-it-works .funnel {
           display: flex; flex-wrap: wrap;
           align-items: stretch; gap: 0;
           border: 1px solid var(--border);
         }
-        #positioning .step {
+        #how-it-works .funnel-stage {
           flex: 1 1 0; min-width: 160px;
-          padding: 22px 18px;
+          padding: 28px 22px;
           display: flex; flex-direction: column;
           justify-content: center; align-items: flex-start;
           border-right: 1px solid var(--border);
           position: relative;
         }
-        #positioning .step:last-child { border-right: none; }
-        #positioning .step .step-num {
+        #how-it-works .funnel-stage:last-child { border-right: none; }
+        #how-it-works .funnel-stage .stage-num {
           font-family: 'IBM Plex Mono', monospace;
           font-size: 10px; letter-spacing: 0.18em;
           color: var(--text-muted);
           text-transform: uppercase;
-          margin-bottom: 8px;
+          margin-bottom: 10px;
         }
-        #positioning .step .step-name {
+        #how-it-works .funnel-stage .stage-name {
           font-family: 'Syne', system-ui, sans-serif;
-          font-weight: 700; font-size: 15px;
+          font-weight: 700; font-size: 16px;
           color: var(--text-muted); letter-spacing: 0.01em;
+          line-height: 1.2;
         }
-        #positioning .step.tenx { background: rgba(0, 229, 255, 0.04); }
-        #positioning .step.tenx .step-num { color: var(--accent-cyan); }
-        #positioning .step.tenx .step-name { color: var(--accent-cyan); }
-        #positioning .step.tenx::before {
+        #how-it-works .funnel-stage.tenx {
+          background: rgba(0, 229, 255, 0.06);
+          box-shadow: inset 0 3px 0 var(--accent-cyan);
+        }
+        #how-it-works .funnel-stage.tenx .stage-num { color: var(--accent-cyan); }
+        #how-it-works .funnel-stage.tenx .stage-name {
+          color: var(--text-primary);
+          font-size: 17px;
+        }
+        #how-it-works .funnel-stage.tenx::before {
           content: ""; position: absolute; inset: 0 auto 0 0;
-          width: 1px; background: var(--accent-cyan);
+          width: 2px; background: var(--accent-cyan);
         }
-        #positioning .arrow {
+        #how-it-works .funnel-arrow {
           display: flex; align-items: center; justify-content: center;
-          padding: 0 4px;
-          color: var(--text-muted);
-          font-family: 'IBM Plex Mono', monospace;
+          padding: 0 6px;
+          color: var(--border-bright);
+          font-size: 13px;
           border-right: 1px solid var(--border);
         }
-        #positioning .arrow:last-child { border-right: none; }
-        #positioning .quote-card {
-          background: var(--bg-surface);
+        #how-it-works .funnel-arrow:last-child { border-right: none; }
+
+        /* ── flow connector ── */
+        #how-it-works .flow-connector {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 52px 0 44px;
+        }
+        #how-it-works .flow-connector .flow-line {
+          width: 1px; height: 32px;
+          background: rgba(124, 134, 255, 0.3);
+        }
+        #how-it-works .flow-connector .flow-badge {
+          border: 1px solid rgba(124, 134, 255, 0.45);
+          background: rgba(124, 134, 255, 0.06);
+          padding: 7px 20px;
+          font-family: 'IBM Plex Mono', monospace;
+          font-size: 11px; letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--accent-blue);
+        }
+        #how-it-works .flow-connector .flow-arrow {
+          width: 0; height: 0;
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-top: 8px solid rgba(124, 134, 255, 0.3);
+        }
+
+        /* ── process steps ── */
+        #how-it-works .step {
           border: 1px solid var(--border);
-          border-left: 1px solid var(--accent-cyan);
-          padding: 28px 28px;
+          padding: 28px 24px;
+          position: relative;
         }
-        #positioning .quote-card .q-copy {
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 15px; line-height: 1.65;
-          color: var(--text-primary);
+        @media (min-width: 768px) {
+          #how-it-works .step:not(:last-child) { border-right: none; }
         }
-        #positioning .quote-card .q-attr {
-          margin-top: 20px;
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 12px; color: var(--text-muted);
-          letter-spacing: 0.06em;
+        #how-it-works .step-num {
+          font-family: 'IBM Plex Mono', ui-monospace, monospace;
+          font-weight: 500; font-size: 36px; line-height: 1;
+          color: var(--accent-blue);
+          opacity: 0.55;
+          font-feature-settings: 'tnum' 1;
+        }
+        #how-it-works .step-title {
+          font-family: 'Syne', system-ui, sans-serif;
+          font-weight: 700; font-size: 18px;
+          letter-spacing: -0.01em; color: var(--text-primary);
+          line-height: 1.25;
+        }
+        #how-it-works .step-desc {
+          font-family: 'IBM Plex Mono', ui-monospace, monospace;
+          font-size: 13px; line-height: 1.6;
+          color: var(--text-secondary);
         }
         @media (max-width: 768px) {
-          #positioning .funnel { flex-direction: column; }
-          #positioning .step { border-right: none; border-bottom: 1px solid var(--border); }
-          #positioning .step:last-child { border-bottom: none; }
-          #positioning .arrow { display: none; }
+          #how-it-works .funnel { flex-direction: column; }
+          #how-it-works .funnel-stage { border-right: none; border-bottom: 1px solid var(--border); }
+          #how-it-works .funnel-stage:last-child { border-bottom: none; }
+          #how-it-works .funnel-arrow { display: none; }
+          #how-it-works .step:not(:last-child) { border-bottom: none; }
         }
       </style>
       <div class="max-w-content mx-auto px-6 md:px-10">
+
+        <!-- WHERE TENX SITS -->
         <div class="flex flex-col items-center text-center">
           <span class="section-label reveal">WHERE TENX SITS</span>
           <h2 class="reveal font-display font-bold text-fg-primary mt-6 max-w-[760px]" style="font-size:clamp(28px,3.8vw,44px); line-height:1.1; letter-spacing:-0.01em;">
@@ -3144,58 +3463,80 @@
           </h2>
           <p class="reveal font-mono text-fg-secondary text-[14px] leading-relaxed mt-5 max-w-[560px]">
             TenX slots into existing pipelines. It doesn't replace the OA or the
-            take-home — it's the AI-leverage signal between them.
+            technical round — it's the AI-leverage signal between them.
           </p>
         </div>
-        <div class="funnel reveal mt-16">
-          <div class="step">
-            <span class="step-num">01</span>
-            <span class="step-name">Resume Screen</span>
+        <div class="funnel reveal mt-12">
+          <div class="funnel-stage">
+            <span class="stage-num">01</span>
+            <span class="stage-name">Resume Screen</span>
           </div>
-          <div class="arrow" aria-hidden="true">&rarr;</div>
-          <div class="step">
-            <span class="step-num">02</span>
-            <span class="step-name">LeetCode OA</span>
+          <div class="funnel-arrow" aria-hidden="true">&rarr;</div>
+          <div class="funnel-stage">
+            <span class="stage-num">02</span>
+            <span class="stage-name">DSA OA</span>
           </div>
-          <div class="arrow" aria-hidden="true">&rarr;</div>
-          <div class="step tenx">
-            <span class="step-num">03 · TENX</span>
-            <span class="step-name">TenX Assessment</span>
+          <div class="funnel-arrow" aria-hidden="true">&rarr;</div>
+          <div class="funnel-stage tenx">
+            <span class="stage-num">03 · TENX</span>
+            <span class="stage-name">TenX Assessment</span>
           </div>
-          <div class="arrow" aria-hidden="true">&rarr;</div>
-          <div class="step">
-            <span class="step-num">04</span>
-            <span class="step-name">Take-Home</span>
+          <div class="funnel-arrow" aria-hidden="true">&rarr;</div>
+          <div class="funnel-stage">
+            <span class="stage-num">04</span>
+            <span class="stage-name">Technical</span>
           </div>
-          <div class="arrow" aria-hidden="true">&rarr;</div>
-          <div class="step">
-            <span class="step-num">05</span>
-            <span class="step-name">Offer</span>
+          <div class="funnel-arrow" aria-hidden="true">&rarr;</div>
+          <div class="funnel-stage">
+            <span class="stage-num">05</span>
+            <span class="stage-name">Offer</span>
           </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
-          <figure class="quote-card reveal">
-            <blockquote class="q-copy">
-              &ldquo;[PLACEHOLDER — recruiter testimonial about how TenX surfaced
-              AI-native candidates that traditional OAs were filtering out.]&rdquo;
-            </blockquote>
-            <figcaption class="q-attr">&mdash; [Placeholder], Head of Engineering at [Company]</figcaption>
-          </figure>
-          <figure class="quote-card reveal">
-            <blockquote class="q-copy">
-              &ldquo;[PLACEHOLDER — hiring lead quote on cycle-time reduction and
-              the signal quality of the five-pillar report.]&rdquo;
-            </blockquote>
-            <figcaption class="q-attr">&mdash; [Placeholder], Director of Talent at [Company]</figcaption>
-          </figure>
+
+        <!-- FLOW CONNECTOR -->
+        <div class="flow-connector reveal">
+          <div class="flow-line"></div>
+          <div class="flow-badge">step 03 &middot; expanded</div>
+          <div class="flow-line"></div>
+          <div class="flow-arrow"></div>
         </div>
+
+        <!-- THE PROCESS -->
+        <div class="flex flex-col items-start">
+          <span class="section-label reveal">THE PROCESS</span>
+          <h2 class="mt-4 font-display font-bold text-fg-primary text-3xl md:text-4xl reveal">
+            Invite to score in four steps.
+          </h2>
+        </div>
+        <ol class="mt-10 grid grid-cols-1 md:grid-cols-4 gap-0">
+          <li class="step reveal">
+            <div class="step-num">01</div>
+            <div class="mt-5 step-title">Candidate invited</div>
+            <p class="mt-3 step-desc">One-click link. No install, no portal. Works from any browser.</p>
+          </li>
+          <li class="step reveal">
+            <div class="step-num">02</div>
+            <div class="mt-5 step-title">Timed session in Codespace</div>
+            <p class="mt-3 step-desc">~60 min sandbox with AI tools enabled. Real work, not puzzles.</p>
+          </li>
+          <li class="step reveal">
+            <div class="step-num">03</div>
+            <div class="mt-5 step-title">AI logs captured</div>
+            <p class="mt-3 step-desc">Every prompt, iteration, and acceptance recorded for scoring.</p>
+          </li>
+          <li class="step reveal">
+            <div class="step-num">04</div>
+            <div class="mt-5 step-title">Score delivered in &lt;60s</div>
+            <p class="mt-3 step-desc">Five pillars, 25-point scale, signal language. Ready to share.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════════
          LIVE METRICS STRIP (Section 7.5)
          ═══════════════════════════════════════════════════════════ -->
-    <section id="metrics" class="relative">
+    <!-- <section id="metrics" class="relative">
       <div class="border-t border-b border-line py-12">
         <div class="max-w-content mx-auto px-6 md:px-10">
           <div class="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
@@ -3230,7 +3571,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- ═══════════════════════════════════════════════════════════
          PRICING
@@ -3339,6 +3680,7 @@
           font-weight: 500; font-size: 11px;
           letter-spacing: 0.12em; text-transform: uppercase;
           border: 1px solid var(--border-bright);
+
           color: var(--text-primary);
           background: transparent;
           transition: background 160ms ease, border-color 160ms ease;
@@ -3351,6 +3693,7 @@
           background: #00E676;
           border-color: #00E676;
           color: var(--bg-base);
+          font-weight: 600;
         }
         #pricing .tier.featured .tier-cta:hover {
           background: #4AFF91;
@@ -3367,43 +3710,30 @@
       </style>
       <div class="max-w-content mx-auto px-6 md:px-10">
         <div class="flex flex-col items-center text-center">
-          <span class="pr-eyebrow reveal">// PRICING</span>
-          <h2 class="pr-h2 reveal">
-            Two tiers. Built around <span class="accent">pilots.</span>
+          <span class="pr-eyebrow reveal">// EARLY ACCESS</span>
+          <h2 class="pr-h2 reveal mx-auto text-center">
+            We're onboarding <span class="accent">founding partners</span> now.
           </h2>
+          <p class="reveal font-mono text-fg-secondary text-[13px] leading-relaxed mt-5 max-w-[520px]">
+            Pilot partners shape the product. Pricing is worked out together — no tiers, no forms, just a conversation.
+          </p>
         </div>
-        <div class="pr-grid">
-          <article class="tier reveal">
-            <span class="tier-label">Starter</span>
-            <span class="tier-name">Pilot</span>
-            <div class="tier-price">
-              $[PLACEHOLDER]<span class="unit">/ assessment</span>
-            </div>
-            <ul>
-              <li>Up to 20 assessments</li>
-              <li>Full 5-pillar report</li>
+        <div class="mt-12 flex flex-col items-center gap-6">
+          <article class="tier featured reveal w-full max-w-[560px]">
+            <span class="tier-label">Founding Partner</span>
+            <span class="tier-name">Pilot Program</span>
+            <ul class="mt-6">
+              <li>Up to 20 assessments to start</li>
+              <li>Full 5-pillar report per candidate</li>
               <li>Sub-60-second turnaround</li>
-              <li>Email support</li>
+              <li>Direct line to the team — weekly feedback loop</li>
+              <li>Founding partner pricing locked in at scale</li>
             </ul>
-            <a href="#cta-footer" class="tier-cta">Request Access</a>
-          </article>
-          <article class="tier featured reveal">
-            <span class="tier-label">Volume</span>
-            <span class="tier-name">Scale</span>
-            <div class="tier-price">
-              Custom<span class="unit">pricing</span>
-            </div>
-            <ul>
-              <li>Volume assessment packages</li>
-              <li>ATS integration (Greenhouse, Lever)</li>
-              <li>Priority support &amp; SLAs</li>
-              <li>Team analytics &amp; benchmarks</li>
-            </ul>
-            <a href="#cta-footer" class="tier-cta">Request Access</a>
+            <a href="#cta-footer" class="tier-cta mt-8 ">Get Early Access</a>
           </article>
         </div>
         <p class="pr-note reveal">
-          Pricing finalized with pilot partners.
+          Accepting a limited number of pilot partners. Reach out to start the conversation.
         </p>
       </div>
     </section>
@@ -3452,12 +3782,12 @@
           transition: border-color 160ms ease;
         }
         #cta-footer .cf-email input::placeholder { color: var(--text-muted); }
-        #cta-footer .cf-email input:focus { border-color: #00E676; }
+        #cta-footer .cf-email input:focus { border-color: #7C86FF; }
         #cta-footer .cf-email button {
           background: #00E676; color: var(--bg-base);
           border: 1px solid #00E676;
           font-family: 'IBM Plex Mono', ui-monospace, monospace;
-          font-weight: 500; font-size: 11px;
+          font-weight: 600; font-size: 11px;
           letter-spacing: 0.12em; text-transform: uppercase;
           padding: 0 20px;
           transition: background 160ms ease, border-color 160ms ease;
@@ -3475,19 +3805,16 @@
         <div class="flex flex-col items-center text-center">
           <span class="cf-eyebrow reveal">// CLOSE THE LOOP</span>
           <h2 class="cf-h2 reveal" style="margin-top:28px">
-            The engineers who work best with AI<br class="hidden md:block"/>
-            are a different tier.
+            The best AI teams hire for AI proficiency<br class="hidden md:block"/>
+
           </h2>
-          <div class="cf-kicker reveal" style="margin-top:20px">TenX finds them.</div>
+          <div class="cf-kicker reveal" style="margin-top:20px">Start with TenX</div>
           <div style="margin-top:48px" class="w-full flex justify-center reveal">
             <form class="cf-email" onsubmit="event.preventDefault();" aria-label="Request access via email">
               <input type="email" name="email" placeholder="your@company.com" autocomplete="email" required />
               <button type="submit">Request Access</button>
             </form>
           </div>
-          <p class="cf-foot reveal">
-            Built at UCF Upstarts &middot; [PLACEHOLDER contact]
-          </p>
         </div>
       </div>
     </section>
