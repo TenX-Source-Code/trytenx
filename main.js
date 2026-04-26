@@ -204,60 +204,7 @@
             setTimeout(function () { animating = false; }, 640);
           }
 
-          /* ── Swipe / drag: pointer gesture on the top card. Drag past
-             60px in any vertical direction triggers cycle; tap also works;
-             interactive children (pillar rows, links) pass through. ── */
-          var SWIPE_THRESHOLD = 60;
-          var dragState = null;
-
-          function getTop() { return grid.querySelector('.slot.is-top'); }
-
-          function onPointerDown(e) {
-            var top = getTop();
-            if (!top) return;
-            if (!top.contains(e.target)) return;
-            // Only block interactive children INSIDE the slot — not the slot itself
-            // (the slot has tabindex="0" which would match the old selector).
-            var interactive = e.target.closest('a, button, input, .sc-pillar');
-            if (interactive && top.contains(interactive)) return;
-            if (animating) return;
-            dragState = {
-              el: top,
-              startY: e.clientY,
-              startX: e.clientX,
-              moved: false,
-            };
-            top.style.transition = 'none';
-            if (top.setPointerCapture) top.setPointerCapture(e.pointerId);
-          }
-          function onPointerMove(e) {
-            if (!dragState) return;
-            var dy = e.clientY - dragState.startY;
-            var dx = e.clientX - dragState.startX;
-            if (Math.abs(dy) > 4 || Math.abs(dx) > 4) dragState.moved = true;
-            // Follow finger, small sideways drift for feel
-            dragState.el.style.transform =
-              'translate(' + (dx * 0.15) + 'px, ' + dy + 'px) scale(1)';
-            dragState.el.style.opacity = String(Math.max(0.35, 1 - Math.abs(dy) / 300));
-          }
-          function onPointerUp(e) {
-            if (!dragState) return;
-            var el = dragState.el;
-            var dy = e.clientY - dragState.startY;
-            var moved = dragState.moved;
-            dragState = null;
-            el.style.transition = '';
-            el.style.transform = '';
-            el.style.opacity = '';
-
-            if (Math.abs(dy) > SWIPE_THRESHOLD) {
-              cycle();            // enough swipe — cycle
-            }
-            // else: short drag — snaps back (transforms reset above)
-          }
-
           [score, sum, pill].forEach(function (el) {
-            el.addEventListener('pointerdown', onPointerDown);
             el.addEventListener('keydown', function (e) {
               if ((e.key === 'Enter' || e.key === ' ') && el.classList.contains('is-top')) {
                 e.preventDefault();
@@ -265,10 +212,6 @@
               }
             });
           });
-
-          window.addEventListener('pointermove', onPointerMove);
-          window.addEventListener('pointerup', onPointerUp);
-          window.addEventListener('pointercancel', onPointerUp);
 
           ['sr-next-score', 'sr-next-sum', 'sr-next-pill'].forEach(function (id) {
             var btn = document.getElementById(id);
