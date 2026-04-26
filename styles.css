@@ -52,7 +52,6 @@
   border-top-right-radius: var(--r-lg);
 }
 
-/* "Next" pill button on the app frame — tucks into the window header */
 .win-next {
   display: inline-flex;
   align-items: center;
@@ -69,14 +68,12 @@
   cursor: pointer;
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
-
 .win-next:hover {
   background: rgba(124, 134, 255, 0.18);
   border-color: rgba(124, 134, 255, 0.55);
   color: var(--accent-blue);
   transform: translateX(1px);
 }
-
 .win-next svg {
   width: 10px;
   height: 10px;
@@ -1111,46 +1108,8 @@ nav {
           transform: translate(0, -3px) scale(1);
         }
 
-        /* Hint strip below the deck */
-        #score-card-section .swap-hint {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          margin-top: 28px;
-          font-family: 'IBM Plex Mono', ui-monospace, monospace;
-          font-size: 11px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: var(--text-muted);
-          user-select: none;
-        }
-
-        #score-card-section .swap-hint .ico {
-          color: var(--accent-blue);
-          font-size: 14px;
-          display: inline-block;
-          animation: swapPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes swapPulse {
-
-          0%,
-          100% {
-            transform: translateY(0);
-            opacity: 0.6;
-          }
-
-          50% {
-            transform: translateY(-2px);
-            opacity: 1;
-          }
-        }
-
         @media (prefers-reduced-motion: reduce) {
-
-          #score-card-section .cards-grid>.slot,
-          #score-card-section .swap-hint .ico {
+          #score-card-section .cards-grid>.slot {
             transition: none !important;
             animation: none !important;
           }

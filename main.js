@@ -252,8 +252,6 @@
 
             if (Math.abs(dy) > SWIPE_THRESHOLD) {
               cycle();            // enough swipe — cycle
-            } else if (!moved) {
-              cycle();            // it was a tap — cycle too
             }
             // else: short drag — snaps back (transforms reset above)
           }
@@ -268,7 +266,10 @@
             });
           });
 
-          // "Next" button in each card's window header
+          window.addEventListener('pointermove', onPointerMove);
+          window.addEventListener('pointerup', onPointerUp);
+          window.addEventListener('pointercancel', onPointerUp);
+
           ['sr-next-score', 'sr-next-sum', 'sr-next-pill'].forEach(function (id) {
             var btn = document.getElementById(id);
             if (!btn) return;
@@ -278,9 +279,6 @@
             });
             btn.addEventListener('pointerdown', function (e) { e.stopPropagation(); });
           });
-          window.addEventListener('pointermove', onPointerMove);
-          window.addEventListener('pointerup', onPointerUp);
-          window.addEventListener('pointercancel', onPointerUp);
         })();
 
 
