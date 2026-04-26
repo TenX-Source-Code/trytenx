@@ -3555,6 +3555,13 @@ nav {
           margin-top: 40px;
         }
 
+        #hiring-blind .hb-sub {
+          font-family: 'Space Grotesk', system-ui, sans-serif;
+          font-size: 16px;
+          line-height: 1.55;
+          color: var(--text-secondary);
+          max-width: 560px;
+        }
 
         /* ── funnel (where tenx sits) ── */
         #how-it-works .funnel {
