@@ -464,46 +464,91 @@
           </div><!-- /.device-shell -->
         </div><!-- /.device-scene -->
 
-        <!-- Mobile: assessment preview replaces the IDE mock on narrow screens -->
-        <div class="mobile-tools" aria-label="Assessment preview">
+        <!-- Mobile: two-card layout — README preview + AI chat -->
+        <div class="mobile-ide-cards">
 
-          <!-- Task line -->
-          <div class="mt-task">
-            <span class="mt-timer">(59:59)</span>
-            <span class="mt-arrow">›</span>
-            <span class="mt-desc">Add a new recommendation engine feature that analyzes user behavior patterns</span>
-          </div>
-
-          <!-- Behavioral metrics -->
-          <div class="mt-metrics">
-            <div class="mt-metric">
-              <span class="mt-val">4</span>
-              <span class="mt-label">Prompts</span>
-            </div>
-            <div class="mt-metric">
-              <span class="mt-val">2</span>
-              <span class="mt-label">Iterations</span>
-            </div>
-            <div class="mt-metric">
-              <span class="mt-val">1/3</span>
-              <span class="mt-label">AI Accepts</span>
-            </div>
-          </div>
-
-          <!-- Code snippet -->
-          <div class="mt-code">
-            <div class="mt-code-header">
+          <!-- Card 1: README preview -->
+          <div class="mobile-readme" aria-label="Assessment README preview">
+            <div class="mr-header">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B6E1FF" stroke-width="2">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                 <polyline points="14 2 14 8 20 8"/>
               </svg>
-              <span class="mt-fname">checkout.ts</span>
-              <span class="mt-fdot" title="Unsaved"></span>
+              <span class="mr-tab">[Preview] README.md</span>
             </div>
-            <pre><div class="ln"><span class="code"><span class="kw">const</span> subtotal <span class="punct">=</span> cart<span class="punct">.</span>items</span></div><div class="ln"><span class="code">  <span class="punct">.</span><span class="fn">map</span><span class="punct">(</span>i <span class="punct">=&gt;</span> <span class="fn">priceFor</span><span class="punct">(</span>i<span class="punct">) *</span> i<span class="punct">.</span>qty<span class="punct">)</span></span></div><div class="ln"><span class="code">  <span class="punct">.</span><span class="fn">reduce</span><span class="punct">((</span>a<span class="punct">,</span> b<span class="punct">) =&gt;</span> a <span class="punct">+</span> b<span class="punct">,</span> <span class="num">0</span><span class="punct">);</span></span></div><div class="ln hl"><span class="code"><span class="com">// TODO: bug — discount applies AFTER tax</span></span></div><div class="ln hl"><span class="code"><span class="kw">const</span> taxed <span class="punct">=</span> subtotal <span class="punct">*</span> <span class="num">1.0825</span><span class="punct">;</span></span></div><div class="ln hl"><span class="code"><span class="kw">const</span> total <span class="punct">=</span> taxed <span class="punct">-</span> <span class="fn">discountFor</span><span class="punct">(</span>userId<span class="punct">);</span></span></div></pre>
+            <div class="mr-body">
+              <div class="mr-h1">Hot Takes Tournament</div>
+              <p class="mr-p">A pairwise-voting app where users submit opinions, vote on head-to-head matchups, and a leaderboard ranks every take by its history.</p>
+              <div class="mr-stack">
+                <span class="mr-badge">Python · FastAPI</span>
+                <span class="mr-badge">React 18 · Vite</span>
+                <span class="mr-badge">SQLite</span>
+              </div>
+              <div class="mr-limit">
+                <span class="mr-limit-label">Time limit</span>
+                <span class="mr-limit-val">60 min coding · 10 min FRQ</span>
+              </div>
+            </div>
           </div>
 
-        </div><!-- /.mobile-tools -->
+          <!-- Card 2: AI chat transcript -->
+          <div class="mobile-chat" aria-label="TenX AI session preview">
+
+          <div class="mc-header">
+            <span class="live" aria-hidden="true"></span>
+            <span class="mc-title">tenx · ai</span>
+            <span class="mc-badge">(59:20)</span>
+          </div>
+
+          <div class="mc-thread">
+
+            <div class="mc-row mc-row--candidate">
+              <div class="mc-bubble mc-bubble--candidate">
+                What are some options for the leaderboard ranking algorithms?
+              </div>
+            </div>
+
+            <div class="mc-row mc-row--tool">
+              <span class="mc-tool-pill">Read(ranking.py)</span>
+            </div>
+
+            <div class="mc-row mc-row--ai">
+              <div class="mc-bubble mc-bubble--ai">
+                Four worth considering:<br><br>
+                <strong>recent</strong> — sort by created_at<br>
+                <strong>best</strong> — Wilson score, confidence-adjusted win rate<br>
+                <strong>hot</strong> — win rate × recency decay on latest vote<br>
+                <strong>controversial</strong> — close 50/50 splits with high volume<br><br>
+                Wilson is the right call for <code>best</code> — raw win rate breaks on low-vote posts.
+              </div>
+            </div>
+
+            <div class="mc-row mc-row--candidate">
+              <div class="mc-bubble mc-bubble--candidate">
+                Implement Wilson score in ranking.py
+              </div>
+            </div>
+
+            <div class="mc-row mc-row--tool">
+              <span class="mc-tool-pill">Edit(ranking.py)</span>
+            </div>
+
+            <div class="mc-row mc-row--ai">
+              <div class="mc-bubble mc-bubble--ai">
+                Done. Added <code>wilson_score(wins, total)</code> — 95% confidence lower bound. New posts start conservatively and earn rank as votes accumulate.
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mc-input">
+            <span class="mc-arrow">›</span>
+            <span class="mc-placeholder">ask the AI something…</span>
+          </div>
+
+        </div><!-- /.mobile-chat -->
+
+        </div><!-- /.mobile-ide-cards -->
 
       </div>
 
@@ -803,7 +848,7 @@
       <div class="max-w-content mx-auto px-6 md:px-10">
         <div class="flex flex-col items-center text-center">
           <h2 class="cf-h2 reveal">
-            Hire for the AI era. 
+            Hire engineers who can leverage AI. 
           </h2>
           <div style="margin-top:48px" class="w-full flex flex-col items-center reveal" id="cf-form-wrap">
             <form class="cf-email" id="cf-form" aria-label="Request access via email" novalidate

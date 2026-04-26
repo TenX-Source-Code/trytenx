@@ -297,7 +297,6 @@ textarea {
 
   /* Hide the three weakest conversion sections on mobile.
      Desktop visitors still see them — no content is deleted. */
-  #defense,
   #hiring-blind {
     display: none;
   }
@@ -1686,132 +1685,198 @@ nav {
           min-height: 0;
         }
 
-        /* Mobile assessment preview — replaces laptop IDE on narrow screens */
-        #real-work .mobile-tools {
+        /* Mobile two-card wrapper */
+        #real-work .mobile-ide-cards {
           display: none;
           flex-direction: column;
           gap: 12px;
-          width: 100%;
         }
 
-        /* Task card */
-        #real-work .mobile-tools .mt-task {
-          background: var(--bg-elevated);
+        /* Card 1: README preview */
+        #real-work .mobile-readme {
           border: 1px solid var(--glass-border);
-          border-radius: var(--r-md);
-          padding: 14px 16px;
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 12px;
+          border-radius: var(--r-lg);
+          overflow: hidden;
+          background: var(--bg-surface);
+          font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        }
+        #real-work .mr-header {
           display: flex;
-          align-items: baseline;
+          align-items: center;
           gap: 8px;
-          line-height: 1.5;
+          padding: 9px 14px;
+          background: rgba(0,0,0,0.25);
+          border-bottom: 1px solid var(--glass-border);
         }
-        #real-work .mobile-tools .mt-task .mt-timer {
-          color: var(--accent-blue);
-          flex-shrink: 0;
+        #real-work .mr-tab {
+          font-size: 12px;
+          color: var(--text-primary);
         }
-        #real-work .mobile-tools .mt-task .mt-arrow {
-          color: var(--accent-blue);
-          flex-shrink: 0;
-        }
-        #real-work .mobile-tools .mt-task .mt-desc {
-          color: var(--text-secondary);
-        }
-
-        /* Metrics row */
-        #real-work .mobile-tools .mt-metrics {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 10px;
-        }
-        #real-work .mobile-tools .mt-metric {
-          background: var(--bg-elevated);
-          border: 1px solid var(--glass-border);
-          border-radius: var(--r-md);
-          padding: 14px 10px;
+        #real-work .mr-body {
+          padding: 16px 16px 18px;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          gap: 5px;
+          gap: 10px;
         }
-        #real-work .mobile-tools .mt-metric .mt-val {
-          font-family: 'IBM Plex Mono', monospace;
+        #real-work .mr-h1 {
+          font-family: 'Space Grotesk', system-ui, sans-serif;
           font-size: 18px;
-          font-weight: 500;
+          font-weight: 700;
           color: var(--text-primary);
-          line-height: 1;
+          letter-spacing: -0.01em;
+          line-height: 1.2;
         }
-        #real-work .mobile-tools .mt-metric .mt-label {
-          font-size: 10px;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: var(--text-muted);
-          font-family: 'IBM Plex Mono', monospace;
-          text-align: center;
+        #real-work .mr-p {
+          font-family: 'Space Grotesk', system-ui, sans-serif;
+          font-size: 13px;
+          color: var(--text-secondary);
+          line-height: 1.55;
         }
-
-        /* Code snippet */
-        #real-work .mobile-tools .mt-code {
-          background: rgba(0,0,0,0.35);
+        #real-work .mr-stack {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+        #real-work .mr-badge {
+          font-size: 11px;
+          padding: 3px 8px;
+          border-radius: 4px;
+          background: var(--bg-elevated);
           border: 1px solid var(--glass-border);
-          border-radius: var(--r-md);
-          overflow: hidden;
+          color: var(--text-secondary);
+          font-family: 'IBM Plex Mono', monospace;
         }
-        #real-work .mobile-tools .mt-code-header {
+        #real-work .mr-limit {
           display: flex;
           align-items: center;
           gap: 8px;
-          padding: 8px 14px;
-          border-bottom: 1px solid var(--glass-border);
-          background: rgba(255,255,255,0.02);
-        }
-        #real-work .mobile-tools .mt-code-header .mt-fname {
-          font-family: 'IBM Plex Mono', monospace;
+          padding-top: 4px;
+          border-top: 1px solid var(--glass-border);
           font-size: 11px;
-          color: var(--text-secondary);
         }
-        #real-work .mobile-tools .mt-code-header .mt-fdot {
-          width: 6px; height: 6px;
-          border-radius: 50%;
-          background: var(--accent-amber);
+        #real-work .mr-limit-label {
+          color: var(--text-muted);
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+        }
+        #real-work .mr-limit-val {
+          color: var(--accent-blue);
+        }
+
+        /* Mobile chat transcript — replaces laptop IDE on narrow screens */
+        #real-work .mobile-chat {
+          display: none;
+          flex-direction: column;
+          border: 1px solid var(--glass-border);
+          border-radius: var(--r-lg);
+          overflow: hidden;
+          background: var(--bg-surface);
+          font-family: 'IBM Plex Mono', ui-monospace, monospace;
+        }
+
+        #real-work .mc-header {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 14px;
+          background: rgba(0,0,0,0.25);
+          border-bottom: 1px solid var(--glass-border);
+        }
+        #real-work .mc-title {
+          font-size: 12px;
+          color: var(--text-primary);
+          flex: 1;
+        }
+        #real-work .mc-badge {
+          font-size: 11px;
+          color: var(--accent-blue);
+          letter-spacing: 0.04em;
+        }
+
+        #real-work .mc-thread {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          padding: 16px 14px;
+          overflow-y: auto;
+          max-height: 380px;
+        }
+
+        #real-work .mc-row {
+          display: flex;
+        }
+        #real-work .mc-row--candidate {
+          justify-content: flex-end;
+        }
+        #real-work .mc-row--ai {
+          justify-content: flex-start;
+        }
+        #real-work .mc-row--tool {
+          justify-content: flex-start;
+          padding-left: 2px;
+        }
+
+        #real-work .mc-bubble {
+          max-width: 82%;
+          padding: 9px 12px;
+          border-radius: 10px;
+          font-size: 12px;
+          line-height: 1.55;
+        }
+        #real-work .mc-bubble--candidate {
+          background: rgba(0, 230, 118, 0.07);
+          border: 1px solid rgba(0, 230, 118, 0.18);
+          color: var(--text-primary);
+          border-bottom-right-radius: 3px;
+        }
+        #real-work .mc-bubble--ai {
+          background: var(--bg-elevated);
+          border: 1px solid var(--glass-border);
+          color: var(--text-secondary);
+          border-bottom-left-radius: 3px;
+        }
+        #real-work .mc-bubble--ai strong {
+          color: var(--text-primary);
+          font-weight: 500;
+        }
+        #real-work .mc-bubble--ai code {
+          font-family: inherit;
+          color: var(--accent-blue);
+          font-size: 11px;
+        }
+
+        #real-work .mc-tool-pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 5px;
+          padding: 3px 8px;
+          background: rgba(99, 120, 255, 0.08);
+          border: 1px solid rgba(99, 120, 255, 0.2);
+          border-radius: 4px;
+          font-size: 11px;
+          color: var(--accent-blue);
+        }
+
+        #real-work .mc-input {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 14px;
+          border-top: 1px solid var(--glass-border);
+          background: rgba(0,0,0,0.15);
+        }
+        #real-work .mc-input .mc-arrow {
+          color: var(--accent-blue);
           flex-shrink: 0;
         }
-        #real-work .mobile-tools .mt-code pre {
-          margin: 0;
-          padding: 12px 0 12px 0;
-          font-family: 'IBM Plex Mono', monospace;
-          font-size: 11px;
-          line-height: 1.7;
-          overflow-x: auto;
-          counter-reset: ln;
-        }
-        #real-work .mobile-tools .mt-code .ln {
-          display: grid;
-          grid-template-columns: 36px 1fr;
-          padding: 0 14px 0 0;
-        }
-        #real-work .mobile-tools .mt-code .ln::before {
-          counter-increment: ln;
-          content: counter(ln);
+        #real-work .mc-input .mc-placeholder {
+          font-size: 12px;
           color: var(--text-muted);
-          text-align: right;
-          padding-right: 14px;
-          user-select: none;
         }
-        #real-work .mobile-tools .mt-code .ln.hl {
-          background: rgba(234, 179, 8, 0.07);
-        }
-        #real-work .mobile-tools .mt-code .code { color: var(--text-primary); white-space: pre; }
-        #real-work .mobile-tools .mt-code .com  { color: var(--accent-amber); }
-        #real-work .mobile-tools .mt-code .kw   { color: #FF7AB6; }
-        #real-work .mobile-tools .mt-code .fn   { color: #6BDFFF; }
-        #real-work .mobile-tools .mt-code .num  { color: #D9C97C; }
-        #real-work .mobile-tools .mt-code .punct{ color: var(--text-secondary); }
 
         @media (max-width: 720px) {
-          #real-work .device-scene { display: none; }
-          #real-work .mobile-tools { display: flex; }
+          #real-work .device-scene     { display: none !important; }
+          #real-work .mobile-ide-cards { display: flex; }
         }
 
         /* Activity bar */
@@ -2696,11 +2761,6 @@ nav {
           justify-content: center;
         }
 
-        @media (max-width: 720px) {
-          #real-work .device-scene { display: none; }
-          #real-work .mobile-tools { display: flex; }
-        }
-
         #real-work .device-shell {
           position: relative;
           transform-style: preserve-3d;
@@ -3437,7 +3497,7 @@ nav {
 
         #pricing .tier.featured .tier-cta:hover {
           background: #4AFF91;
-          border-color: #4AFF91;
+          border-color: #4AFF91
         }
 
         #pricing .pr-note {
@@ -3466,11 +3526,11 @@ nav {
         #cta-footer .cf-h2 {
           font-family: 'Space Grotesk', system-ui, sans-serif;
           font-weight: 600;
-          font-size: clamp(32px, 5vw, 52px);
-          line-height: 1.05;
-          letter-spacing: -0.03em;
+          font-size: clamp(24px, 3.2vw, 36px);
+          line-height: 1.15;
+          letter-spacing: -0.02em;
           color: var(--text-primary);
-          max-width: 800px;
+          max-width: 660px;
         }
 
         #cta-footer .cf-kicker {
