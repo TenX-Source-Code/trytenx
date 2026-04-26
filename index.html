@@ -102,6 +102,7 @@
         <div class="mt-16 cmp-shell reveal">
           <div class="win-header" aria-hidden="true">
             <span class="win-dots"><i></i><i></i><i></i></span>
+            <span class="win-title">Comparison</span>
             <span style="width:54px"></span>
           </div>
           <table class="cmp-table">
@@ -116,17 +117,17 @@
               <tr>
                 <th scope="row">AI policy</th>
                 <td>Not allowed</td>
-                <td class="tenx-val">Required, observed, and scored</td>
+                <td class="tenx-val">Required</td>
               </tr>
               <tr>
-                <th scope="row">What's measured</th>
+                <th scope="row">What's assessed</th>
                 <td>Algorithmic puzzles and syntax</td>
-                <td class="tenx-val">AI usage patterns, code comprehension, solution quality</td>
+                <td class="tenx-val">Prompts, code comprehension, solution quality</td>
               </tr>
               <tr>
                 <th scope="row">What you get</th>
                 <td>A score and a pass/fail threshold</td>
-                <td class="tenx-val">AI collaboration profile, team fit, multi-dimensional scoring</td>
+                <td class="tenx-val">AI usage profile, team fit, multi-dimensional scoring</td>
               </tr>
             </tbody>
           </table>
@@ -167,13 +168,13 @@
           </li>
           <li class="step reveal">
             <div class="step-num">04</div>
-            <div class="mt-5 step-title">Deep dive</div>
-            <p class="mt-3 step-desc">Technical questions probe comprehension and decision-making.</p>
+            <div class="mt-5 step-title">Technical deep dive</div>
+            <p class="mt-3 step-desc">Targeted questions probe comprehension and decision-making.</p>
           </li>
           <li class="step reveal">
             <div class="step-num">05</div>
             <div class="mt-5 step-title">Report delivered</div>
-            <p class="mt-3 step-desc">AI collaboration profile, team fit, and scores sent to your team.</p>
+            <p class="mt-3 step-desc">AI usage profile, team fit, and scores sent to your team.</p>
           </li>
         </ol>
       </div>
@@ -230,7 +231,7 @@
             Real work. Real tools. <br><span class="accent">Real signal.</span>
           </h2>
           <p class="rw-sub reveal">
-            Candidates work in a full dev environment with AI — the way your team actually ships.
+            Candidates work on projects in a full dev environment with AI.
           </p>
         </div>
 
@@ -420,21 +421,15 @@
                     <div class="term-body" id="rw-term-body" aria-live="polite">
                       <div class="term-intro">
                         <div class="term-welcome">TenX AI v0.3.1</div>
-                        <div class="term-welcome">claude-sonnet-4-5-20250929</div>
-                        <div class="term-welcome">/workspaces/hot-take</div>
                       </div>
                       <div class="term-divider"></div>
                       <div class="term-hint">Type <code>/help</code> for commands.</div>
                       <div class="term-hint">
-                        Assessment timer: <span class="term-cmd-tag">56:06</span>. Type <code>/time</code> to check remaining time.
-                      </div>
-                      <div class="term-status">
-                        <span class="arrow">›</span>
-                        What are some options we can explore for the leaderboard's ranking algorithms?
+                        Assessment timer: <span class="term-cmd-tag">60:00</span>. Type <code>/time</code> to check remaining time.
                       </div>
                       <div class="term-divider"></div>
                       <div class="term-status">
-                        <span class="clk">(52:40)</span><span class="arrow">›</span>
+                        <span class="clk">(59:20)</span><span class="arrow">›</span>
                         What are some options we can explore for the leaderboard's ranking algorithms?
                       </div>
                       <div class="term-tool">Read(ranking.py)</div>
@@ -444,13 +439,13 @@
                    The mirror span sizes the field to its content, so the
                    at-rest cursor block sits flush with end-of-text. -->
                       <form class="term-prompt-line" id="rw-term-form" autocomplete="off">
+                        <span class="arrow">›</span>
                         <span class="field">
-                          <span class="mirror" id="rw-term-mirror" aria-hidden="true">try typing something…</span>
+                          <span class="mirror" id="rw-term-mirror" aria-hidden="true"></span>
                           <input id="rw-term-input" type="text" name="prompt" placeholder="try typing something…"
                             aria-label="Terminal prompt" />
                         </span>
-                        <span class="rest-cursor" aria-hidden="true"></span>
-                        <span class="click-hint" aria-hidden="true">← click to type</span>
+                        <span class="click-hint" aria-hidden="true">click to type something</span>
                       </form>
                     </div>
                   </div><!-- /.ide-term -->
@@ -539,7 +534,6 @@
           <div class="df-chat reveal" role="region" aria-label="Sample defense interview chat">
             <div class="win-header" aria-hidden="true">
               <span class="win-dots"><i></i><i></i><i></i></span>
-              <span class="win-title">TenX · Technical Deep-Dive</span>
               <span style="width:54px"></span>
             </div>
             <div class="chat-head">
@@ -581,7 +575,7 @@
           </h2>
           <p class="reveal font-mono text-fg-muted mt-5"
             style="font-size:12px; letter-spacing:0.14em; text-transform:uppercase;">
-            AI Collaboration Profile. Code Comprehension. Solution Quality.
+            AI Usage Profile. Code Comprehension. Solution Quality.
           </p>
         </div>
         <div class="cards-grid" id="sr-cards-grid">
@@ -591,6 +585,7 @@
             <div class="eval-card">
               <div class="win-header">
                 <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="win-title">Candidate Report</span>
                 <button type="button" class="win-next" id="sr-next-score" aria-label="Next card">
                   Next
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
@@ -602,7 +597,6 @@
               </div>
               <div class="eval-body">
                 <div class="eval-section-label">03 &nbsp; SOLUTION</div>
-
                 <div class="eval-dimension">
                   <div class="eval-dim-header">
                     <span class="eval-dim-name">Implementation</span>
@@ -643,7 +637,7 @@
             <div class="eval-card reveal">
               <div class="win-header">
                 <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="win-title">candidate_report.tenx</span>
+                <span class="win-title">Candidate Report</span>
                 <button type="button" class="win-next" id="sr-next-sum" aria-label="Next card">
                   Next
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
@@ -655,7 +649,6 @@
               </div>
               <div class="eval-body">
                 <div class="eval-section-label">02 &nbsp; UNDERSTANDING</div>
-
                 <div class="eval-dimension">
               <div class="eval-dim-header">
                 <span class="eval-dim-name">Code Comprehension</span>
@@ -689,13 +682,13 @@
             </div>
           </div>
 
-          <!-- AI Collaboration Profile Card -->
+          <!-- AI Usage Profile Card -->
           <div class="slot is-top" id="sr-slot-pillars" role="button" tabindex="0"
-            aria-label="AI Collaboration Profile card. Click to cycle.">
+            aria-label="AI Usage Profile card. Click to cycle.">
             <div class="eval-card reveal">
               <div class="win-header">
                 <span class="win-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                <span class="win-title">candidate_report.tenx</span>
+                <span class="win-title">Candidate Report</span>
                 <button type="button" class="win-next" id="sr-next-pill" aria-label="Next card">
                   Next
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"
@@ -706,7 +699,7 @@
                 </button>
               </div>
               <div class="eval-body">
-                <div class="eval-section-label">01 &nbsp; AI COLLABORATION PROFILE</div>
+                <div class="eval-section-label">01 &nbsp; AI USAGE PROFILE</div>
                 <div class="eval-spectrum-dim">
               <div class="eval-dim-header">
                 <span class="eval-dim-name">Prompting</span>
