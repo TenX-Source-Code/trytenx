@@ -5,8 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
-  <!-- Set to "local" to reveal the dev panel; remove or change for production. -->
-  <meta name="env" content="local" />
+  <meta name="env" content="production" />
   <title>TenX — AI-Native Hiring Assessment</title>
   <meta name="description"
     content="TenX measures AI leverage — how engineers prompt, iterate, and reason alongside AI tools. A 5-pillar, 25-point assessment delivered in under 60 seconds." />
@@ -957,7 +956,7 @@
   </script>
 
   <!-- ═══════════════════════════════════════════════════════════
-       DEV PANEL — visible only when <meta name="env" content="local">
+       DEV PANEL — visible only when ?show_theme_panel=true is in the URL
        Lets you toggle theme and swap accent color combos at runtime.
        State persisted in localStorage.
        ═══════════════════════════════════════════════════════════ -->
@@ -992,8 +991,8 @@
 
   <script>
     (function () {
-      var envMeta = document.querySelector('meta[name="env"]');
-      if (!envMeta || envMeta.content !== 'local') return;
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('show_theme_panel') !== 'true') return;
 
       var panel = document.getElementById('dev-panel');
       var fab = document.getElementById('dev-panel-fab');
