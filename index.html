@@ -5,6 +5,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
+  <!-- Set to "local" to reveal the dev panel; remove or change for production. -->
+  <meta name="env" content="local" />
   <title>TenX — AI-Native Hiring Assessment</title>
   <meta name="description"
     content="TenX measures AI leverage — how engineers prompt, iterate, and reason alongside AI tools. A 5-pillar, 25-point assessment delivered in under 60 seconds." />
@@ -16,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -24,6 +26,25 @@
   <script src="tailwind.config.js"></script>
 
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Apply theme before paint (avoids FOUC). Order: saved pref → OS pref → dark. -->
+  <script>
+    (function () {
+      try {
+        var saved = JSON.parse(localStorage.getItem('tenx-dev-panel') || '{}');
+        var t = saved.theme;
+        if (!t) {
+          t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+            ? 'light' : 'dark';
+        }
+        var html = document.documentElement;
+        html.classList.remove('dark', 'light');
+        html.classList.add(t);
+        var meta = document.querySelector('meta[name="color-scheme"]');
+        if (meta) meta.content = t;
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body class="bg-bg-base text-fg-primary">
@@ -39,11 +60,14 @@
         <a href="#" class="nav-wordmark" aria-label="TenX home">
           Ten<span class="x">x</span>
         </a>
-        <div class="flex items-center gap-8">
+        <div class="flex items-center gap-6">
           <div class="hidden md:flex items-center gap-8">
             <a href="#how-it-works" class="nav-link">How It Works</a>
             <a href="#pricing" class="nav-link">Pricing</a>
           </div>
+          <button id="nav-theme" type="button" aria-label="Toggle theme">
+            <svg id="nav-theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"></svg>
+          </button>
           <a href="#cta-footer" class="nav-cta">Request Access</a>
         </div>
       </div>
@@ -66,7 +90,7 @@
         <div class="hero-eyebrow h-rise d-0 mb-6">AI-Native Hiring Assessment</div>
         <h1 class="hero-h1 mb-6">
           <span class="block h-rise d-150">Hire engineers who</span>
-          <span class="block h-rise d-300">can <span class="accent">leverage AI</span>.</span>
+          <span class="block h-rise d-300">can <span class="accent">leverage AI.</span></span>
         </h1>
         <p class="hero-sub h-rise d-450 mb-8">
           AI changed how engineers build, but hiring hasn't caught up.
@@ -865,6 +889,270 @@
        SHARED SCRIPTS — reveal observer, count-up, scanline trigger
        ═══════════════════════════════════════════════════════════ -->
   <script src="main.js"></script>
+
+  <!-- Theme runtime — exposes window.__tenxTheme, wires nav toggle,
+       follows OS pref when no explicit user choice is saved. -->
+  <script>
+    (function () {
+      var STORE = 'tenx-dev-panel';
+      function read()  { try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch (e) { return {}; } }
+      function write(s) { localStorage.setItem(STORE, JSON.stringify(s)); }
+
+      function apply(t) {
+        var html = document.documentElement;
+        html.classList.remove('dark', 'light');
+        html.classList.add(t);
+        var meta = document.querySelector('meta[name="color-scheme"]');
+        if (meta) meta.content = t;
+        window.dispatchEvent(new CustomEvent('tenx:theme', { detail: t }));
+      }
+      function current() {
+        return document.documentElement.classList.contains('light') ? 'light' : 'dark';
+      }
+
+      window.__tenxTheme = {
+        set: function (t, opts) {
+          apply(t);
+          if (!opts || opts.persist !== false) {
+            var s = read(); s.theme = t; write(s);
+          }
+        },
+        clear: function () {
+          var s = read(); delete s.theme; write(s);
+          var t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          apply(t);
+        },
+        current: current
+      };
+
+      // Follow OS theme changes when no explicit pref is saved.
+      var mq = window.matchMedia('(prefers-color-scheme: dark)');
+      var onChange = function (e) {
+        if (!read().theme) apply(e.matches ? 'dark' : 'light');
+      };
+      if (mq.addEventListener) mq.addEventListener('change', onChange);
+      else if (mq.addListener) mq.addListener(onChange);
+
+      // Nav toggle — single icon that swaps based on current theme.
+      var ICONS = {
+        // Show a sun in dark mode (suggesting "switch to light"),
+        // show a moon in light mode (suggesting "switch to dark").
+        dark: '<circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>',
+        light: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>'
+      };
+      function renderIcon() {
+        var icon = document.getElementById('nav-theme-icon');
+        if (icon) icon.innerHTML = ICONS[current()] || ICONS.dark;
+      }
+      renderIcon();
+      window.addEventListener('tenx:theme', renderIcon);
+
+      var btn = document.getElementById('nav-theme');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          window.__tenxTheme.set(current() === 'light' ? 'dark' : 'light');
+        });
+      }
+    })();
+  </script>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       DEV PANEL — visible only when <meta name="env" content="local">
+       Lets you toggle theme and swap accent color combos at runtime.
+       State persisted in localStorage.
+       ═══════════════════════════════════════════════════════════ -->
+  <aside id="dev-panel" hidden aria-label="Dev panel">
+    <header class="dp-head">
+      <span class="dp-dot" aria-hidden="true"></span>
+      <span class="dp-title">TENX · DEV</span>
+      <button class="dp-close" type="button" aria-label="Close panel">×</button>
+    </header>
+    <section class="dp-section">
+      <div class="dp-label">Theme</div>
+      <div class="dp-row dp-theme" role="group">
+        <button type="button" data-theme="dark">Dark</button>
+        <button type="button" data-theme="light">Light</button>
+      </div>
+    </section>
+    <section class="dp-section">
+      <div class="dp-label">Combo</div>
+      <div class="dp-row dp-combos"></div>
+      <button class="dp-random" type="button">↻ Random</button>
+    </section>
+    <section class="dp-section">
+      <div class="dp-label">Custom</div>
+      <div class="dp-row dp-custom">
+        <label>Accent <input type="color" data-var="--accent-cyan" /></label>
+        <label>Periwinkle <input type="color" data-var="--accent-blue" /></label>
+      </div>
+    </section>
+    <button class="dp-reset" type="button">Reset</button>
+  </aside>
+  <button id="dev-panel-fab" hidden aria-label="Open dev panel" title="Dev panel">⚙</button>
+
+  <script>
+    (function () {
+      var envMeta = document.querySelector('meta[name="env"]');
+      if (!envMeta || envMeta.content !== 'local') return;
+
+      var panel = document.getElementById('dev-panel');
+      var fab = document.getElementById('dev-panel-fab');
+      var root = document.documentElement;
+      var STORE = 'tenx-dev-panel';
+
+      var COMBOS = [
+        { name: 'Default',  accent: '#00E676', pair: '#7C86FF' },
+        { name: 'Mono',     accent: '#FFFFFF', pair: '#A3A3A3' },
+        { name: 'Cyan/Pink',accent: '#22D3EE', pair: '#F472B6' },
+        { name: 'Sage/Coral', accent: '#86EFAC', pair: '#FCA5A5' },
+        { name: 'Amber/Indigo', accent: '#FBBF24', pair: '#818CF8' }
+      ];
+
+      var state = (function () {
+        try { return JSON.parse(localStorage.getItem(STORE)) || {}; }
+        catch (e) { return {}; }
+      })();
+
+      function persist() { localStorage.setItem(STORE, JSON.stringify(state)); }
+
+      function applyTheme(theme) {
+        if (window.__tenxTheme) window.__tenxTheme.set(theme);
+        panel.querySelectorAll('.dp-theme button').forEach(function (b) {
+          b.classList.toggle('on', b.dataset.theme === theme);
+        });
+      }
+      // Sync panel UI when the theme is changed elsewhere (nav toggle, OS pref).
+      window.addEventListener('tenx:theme', function (e) {
+        panel.querySelectorAll('.dp-theme button').forEach(function (b) {
+          b.classList.toggle('on', b.dataset.theme === e.detail);
+        });
+      });
+
+      function applyColors(accent, pair) {
+        if (accent) root.style.setProperty('--accent-cyan', accent);
+        if (accent) root.style.setProperty('--accent-green', accent);
+        if (pair)   root.style.setProperty('--accent-blue', pair);
+        var ai = panel.querySelector('input[data-var="--accent-cyan"]');
+        var pi = panel.querySelector('input[data-var="--accent-blue"]');
+        if (ai && accent) ai.value = accent;
+        if (pi && pair)   pi.value = pair;
+        panel.querySelectorAll('.dp-combos button').forEach(function (b) {
+          b.classList.toggle('on',
+            b.dataset.accent === accent && b.dataset.pair === pair);
+        });
+      }
+
+      // Build combo swatches
+      var combos = panel.querySelector('.dp-combos');
+      COMBOS.forEach(function (c) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.dataset.accent = c.accent;
+        btn.dataset.pair = c.pair;
+        btn.title = c.name;
+        btn.innerHTML =
+          '<span style="background:' + c.accent + '"></span>' +
+          '<span style="background:' + c.pair   + '"></span>';
+        btn.addEventListener('click', function () {
+          state.accent = c.accent;
+          state.pair = c.pair;
+          applyColors(c.accent, c.pair);
+          persist();
+        });
+        combos.appendChild(btn);
+      });
+
+      // Theme buttons
+      panel.querySelectorAll('.dp-theme button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          state.theme = b.dataset.theme;
+          applyTheme(state.theme);
+          persist();
+        });
+      });
+
+      // Color pickers
+      panel.querySelectorAll('.dp-custom input').forEach(function (input) {
+        input.addEventListener('input', function () {
+          var v = input.value;
+          var k = input.dataset.var;
+          root.style.setProperty(k, v);
+          if (k === '--accent-cyan') {
+            root.style.setProperty('--accent-green', v);
+            state.accent = v;
+          } else if (k === '--accent-blue') {
+            state.pair = v;
+          }
+          // de-select combo since we've gone custom
+          panel.querySelectorAll('.dp-combos button').forEach(function (b) {
+            b.classList.remove('on');
+          });
+          persist();
+        });
+      });
+
+      // Random combo — pick two HSL hues with good separation, mid-high saturation,
+      // medium-bright lightness so colors stay visible on both themes.
+      function randomColor(hueOffset) {
+        var h = Math.floor(Math.random() * 360);
+        if (typeof hueOffset === 'number') h = hueOffset;
+        var s = 55 + Math.floor(Math.random() * 30);   // 55–85%
+        var l = 60 + Math.floor(Math.random() * 12);   // 60–72%
+        return hslToHex(h, s, l);
+      }
+      function hslToHex(h, s, l) {
+        s /= 100; l /= 100;
+        var k = function (n) { return (n + h / 30) % 12; };
+        var a = s * Math.min(l, 1 - l);
+        var f = function (n) {
+          var c = l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)));
+          return Math.round(c * 255).toString(16).padStart(2, '0');
+        };
+        return '#' + f(0) + f(8) + f(4);
+      }
+      panel.querySelector('.dp-random').addEventListener('click', function () {
+        var h1 = Math.floor(Math.random() * 360);
+        var h2 = (h1 + 120 + Math.floor(Math.random() * 120)) % 360; // 120–240° apart
+        var accent = randomColor(h1);
+        var pair = randomColor(h2);
+        state.accent = accent;
+        state.pair = pair;
+        applyColors(accent, pair);
+        persist();
+      });
+
+      // Reset
+      panel.querySelector('.dp-reset').addEventListener('click', function () {
+        state = {};
+        localStorage.removeItem(STORE);
+        root.style.removeProperty('--accent-cyan');
+        root.style.removeProperty('--accent-green');
+        root.style.removeProperty('--accent-blue');
+        if (window.__tenxTheme) window.__tenxTheme.clear();
+        applyColors('#00E676', '#7C86FF');
+      });
+
+      // FAB toggles panel
+      fab.addEventListener('click', function () {
+        panel.hidden = false;
+        fab.hidden = true;
+      });
+      panel.querySelector('.dp-close').addEventListener('click', function () {
+        panel.hidden = true;
+        fab.hidden = false;
+      });
+
+      // Initial state
+      panel.hidden = state.collapsed === true;
+      fab.hidden = !panel.hidden;
+      // Theme already applied by the head/runtime scripts — just sync panel UI.
+      var t = (window.__tenxTheme && window.__tenxTheme.current()) || 'dark';
+      panel.querySelectorAll('.dp-theme button').forEach(function (b) {
+        b.classList.toggle('on', b.dataset.theme === t);
+      });
+      applyColors(state.accent || '#00E676', state.pair || '#7C86FF');
+    })();
+  </script>
 </body>
 
 </html>
